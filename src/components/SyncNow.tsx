@@ -56,7 +56,7 @@ export default function SyncNow() {
       <button
         onClick={run}
         disabled={busy}
-        className={`rounded-lg border px-3 py-1.5 font-mono text-[13.5px] font-bold transition ${
+        className={`whitespace-nowrap rounded-full border px-4 py-1.5 font-mono text-[13.5px] font-bold transition ${
           busy
             ? 'border-accent-teal/40 bg-accent-teal/10 text-accent-teal/70'
             : 'border-accent-teal/50 bg-accent-teal/15 text-accent-teal hover:-translate-y-px'

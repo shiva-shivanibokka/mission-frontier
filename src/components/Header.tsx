@@ -1,8 +1,12 @@
 import { TARGET_DATE, daysUntil, prettyDate } from '../data/meta'
+import type { Store } from '../lib/store'
+import SyncNow from './SyncNow'
+import SyncSettings from './SyncSettings'
 
 // Sticky header: gradient wordmark, a live countdown to the interview window,
-// and the last-synced line.
-export default function Header({ generatedAt }: { generatedAt: string | null }) {
+// the last-synced line, and the row of jump-nav pills + sync/settings actions.
+export default function Header({ store }: { store: Store }) {
+  const generatedAt = store.generatedAt
   const days = Math.max(0, daysUntil(TARGET_DATE))
   const synced = generatedAt
     ? new Date(generatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
@@ -33,26 +37,35 @@ export default function Header({ generatedAt }: { generatedAt: string | null }) 
           </div>
         </div>
 
-        {/* second row: jump-to nav — pills float over the moving background */}
-        <nav className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-5 pb-3.5">
-          {[
-            ['today', 'Today'],
-            ['plan', 'Plan'],
-            ['catchup', 'Catch-up'],
-            ['study', 'Math + Drills'],
-            ['build', 'Build'],
-            ['prep', 'Interview Prep'],
-            ['tests', 'Timed Tests'],
-          ].map(([id, label]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="whitespace-nowrap rounded-full border border-white/10 bg-canvas/50 px-4 py-1.5 font-mono text-[13.5px] font-bold text-muted backdrop-blur-sm transition hover:border-accent-violet/40 hover:bg-accent-violet/20 hover:text-ink"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
+        {/* second row: jump-to nav pills (left) + sync/settings actions (right).
+            Pills scroll horizontally on narrow screens inside their own <nav>;
+            the actions sit outside that scroll box so the Settings dropdown
+            isn't clipped. */}
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-5 pb-3.5">
+          <nav className="flex gap-2 overflow-x-auto">
+            {[
+              ['today', 'Today'],
+              ['plan', 'Plan'],
+              ['catchup', 'Catch-up'],
+              ['study', 'Math + Drills'],
+              ['build', 'Build'],
+              ['prep', 'Interview Prep'],
+              ['tests', 'Timed Tests'],
+            ].map(([id, label]) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="whitespace-nowrap rounded-full border border-white/10 bg-canvas/50 px-4 py-1.5 font-mono text-[13.5px] font-bold text-muted backdrop-blur-sm transition hover:border-accent-violet/40 hover:bg-accent-violet/20 hover:text-ink"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+          <div className="ml-auto flex shrink-0 items-center gap-2">
+            <SyncNow />
+            <SyncSettings store={store} />
+          </div>
+        </div>
       </div>
       {/* soft glow seam instead of a line: a thin gradient that melts away */}
       <div className="h-6 bg-gradient-to-b from-canvas/25 to-transparent" />

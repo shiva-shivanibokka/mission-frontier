@@ -11,8 +11,6 @@ import BuildTrack from './components/BuildTrack'
 import Teasers from './components/Teasers'
 import TimedTests from './components/TimedTests'
 import Rounds from './components/Rounds'
-import SyncSettings from './components/SyncSettings'
-import SyncNow from './components/SyncNow'
 import { useStore } from './lib/store'
 import { NEETCODE } from './data/leetcode'
 import { BUILD, MATH, MATH_RESOURCES, PRODUCTION, PRODUCTION_NOTE, TESTS } from './data/tracks'
@@ -37,13 +35,8 @@ export default function App() {
   return (
     <>
       <CircuitBackground />
-      <Header generatedAt={store.generatedAt} />
+      <Header store={store} />
       <main className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-6">
-        <div className="flex items-center justify-end gap-3">
-          <SyncNow />
-          <SyncSettings store={store} />
-        </div>
-
         <Pace store={store} />
         <StatTiles metrics={metrics} />
         <Momentum store={store} />

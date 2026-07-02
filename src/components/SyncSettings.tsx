@@ -24,19 +24,19 @@ export default function SyncSettings({ store }: { store: Store }) {
     store.syncState === 'saving' ? 'saving…' : store.syncState === 'saved' ? 'saved ✓' : store.syncState === 'error' ? 'sync error' : store.syncState === 'off' ? 'local only' : 'idle'
 
   return (
-    <div className="text-right">
+    <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="rounded-xl border border-accent-violet/40 bg-accent-violet/10 px-3.5 py-2 text-[14.5px] font-bold text-accent-violet transition hover:-translate-y-px"
+        className="whitespace-nowrap rounded-full border border-accent-violet/40 bg-accent-violet/10 px-4 py-1.5 font-mono text-[13.5px] font-bold text-accent-violet transition hover:-translate-y-px"
         title="Token & sync settings"
       >
         ⚙ Settings
       </button>
-      <div className="mt-1 font-mono text-[12.5px] text-faint">
-        check-offs: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''} · LeetCode auto-syncs
-      </div>
       {open && (
-        <div className="mt-2 w-[320px] rounded-xl border border-white/10 bg-card/90 p-3 text-left backdrop-blur-md">
+        <div className="absolute right-0 top-full z-30 mt-2 w-[320px] rounded-xl border border-white/10 bg-card/95 p-3 text-left backdrop-blur-md">
+          <p className="mb-2 font-mono text-[12.5px] text-faint">
+            check-offs: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''} · LeetCode auto-syncs
+          </p>
           <p className="mb-2 text-[13px] leading-relaxed text-muted">
             Optional. A fine-grained PAT (Contents: read/write on <span className="text-subtle">mission-frontier</span>) saves your check-offs across devices. Stored only in this browser.
           </p>
