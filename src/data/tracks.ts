@@ -34,9 +34,9 @@ export interface Phase {
   color: string
 }
 export const PHASES: Phase[] = [
-  { n: 1, title: 'Foundations', range: 'Jul 6 – Aug 2 · wk 1–4', focus: 'Core LeetCode patterns · probability & linear algebra · build the autograd + optimizers flagship', color: '#818cf8' },
-  { n: 2, title: 'Depth', range: 'Aug 3 – Sep 6 · wk 5–9', focus: 'Trees→Graphs→DP · matrix calculus & info theory · GPT-from-scratch + ablation · production drills', color: '#46e0d0' },
-  { n: 3, title: 'Original work + full mock loop', range: 'Sep 7 – Oct 4 · wk 10–13', focus: 'Greedy/intervals/math · original project · behavioral + AI-safety · full timed mock interviews', color: '#f472b6' },
+  { n: 1, title: 'Foundations', range: 'Jul 5 – Aug 1 · wk 1–4', focus: 'Core LeetCode patterns · probability & linear algebra · build the autograd + optimizers flagship', color: '#818cf8' },
+  { n: 2, title: 'Depth', range: 'Aug 2 – Sep 5 · wk 5–9', focus: 'Trees→Graphs→DP · matrix calculus & info theory · GPT-from-scratch + ablation · production drills', color: '#46e0d0' },
+  { n: 3, title: 'Original work + full mock loop', range: 'Sep 6 – Oct 3 · wk 10–13', focus: 'Greedy/intervals/math · original project · behavioral + AI-safety · full timed mock interviews', color: '#f472b6' },
 ]
 
 // ---- Math track -------------------------------------------------------------

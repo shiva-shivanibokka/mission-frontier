@@ -1,8 +1,10 @@
-// Global plan constants. The 3-month "core" block runs Mon 2026-07-06 → Sun
-// 2026-10-04 (13 weeks). The countdown targets the OpenAI Residency interview
-// window (~January 2027); adjust TARGET once real dates are known.
+// Global plan constants. The 3-month "core" block opens Sun 2026-07-05 and runs
+// 13 weeks to Sat 2026-10-03. Sunday is a rest/catch-up day, so the first study
+// day lands on Mon 2026-07-06 (see schedule.ts). The countdown targets the
+// OpenAI Residency interview window (~January 2027); adjust TARGET once real
+// dates are known.
 
-export const PLAN_START = '2026-07-06' // Monday — week boundaries are clean
+export const PLAN_START = '2026-07-05' // Sunday — plan opens here; study starts Mon Jul 6
 export const PLAN_WEEKS = 13
 export const TARGET_DATE = '2027-01-05' // interview window (approx.)
 export const LEETCODE_USER = 'YqGw1R8NKB'
