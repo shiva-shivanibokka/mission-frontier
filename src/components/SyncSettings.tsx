@@ -25,9 +25,16 @@ export default function SyncSettings({ store }: { store: Store }) {
 
   return (
     <div className="text-right">
-      <button onClick={() => setOpen((o) => !o)} className="font-mono text-[11.5px] text-faint hover:text-subtle">
-        ⚙ check-offs: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''} · LeetCode auto-syncs
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="rounded-xl border border-accent-violet/40 bg-accent-violet/10 px-3.5 py-2 text-[13px] font-bold text-accent-violet transition hover:-translate-y-px"
+        title="Token & sync settings"
+      >
+        ⚙ Settings
       </button>
+      <div className="mt-1 font-mono text-[10.5px] text-faint">
+        check-offs: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''} · LeetCode auto-syncs
+      </div>
       {open && (
         <div className="mt-2 w-[320px] rounded-xl border border-white/10 bg-card/90 p-3 text-left backdrop-blur-md">
           <p className="mb-2 text-[11.5px] leading-relaxed text-muted">

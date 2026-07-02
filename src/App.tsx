@@ -1,9 +1,8 @@
 import CircuitBackground from './components/CircuitBackground'
 import Header from './components/Header'
 import StatTiles, { type Metric } from './components/StatTiles'
-import Roadmap from './components/Roadmap'
+import WeeklyPlan from './components/WeeklyPlan'
 import Today from './components/Today'
-import ThisWeek from './components/ThisWeek'
 import Momentum from './components/Momentum'
 import LeetBoard from './components/LeetBoard'
 import Checklist from './components/Checklist'
@@ -16,7 +15,6 @@ import SyncNow from './components/SyncNow'
 import { useStore } from './lib/store'
 import { NEETCODE } from './data/leetcode'
 import { BUILD, MATH, MATH_RESOURCES, PRODUCTION, PRODUCTION_NOTE, TESTS } from './data/tracks'
-import { TARGET_DATE, daysUntil } from './data/meta'
 
 export default function App() {
   const store = useStore()
@@ -25,13 +23,14 @@ export default function App() {
   const buildSteps = BUILD.flatMap((m) => m.steps)
   const buildDone = buildSteps.filter((s) => store.isChecked(s.id)).length
   const testsDone = TESTS.filter((t) => store.isChecked(t.id)).length
-  const daysLeft = Math.max(0, daysUntil(TARGET_DATE))
+  const study = [...MATH, ...PRODUCTION]
+  const studyDone = study.filter((i) => store.isChecked(i.id)).length
 
   const metrics: Metric[] = [
     { label: 'LeetCode', value: lcDone, total: NEETCODE.length, sub: 'NeetCode 250 · auto-synced', color: '#a78bfa' },
     { label: 'Build track', value: buildDone, total: buildSteps.length, sub: 'from-scratch steps', color: '#46e0d0' },
+    { label: 'Math + drills', value: studyDone, total: study.length, sub: 'math & production topics', color: '#818cf8' },
     { label: 'Timed tests', value: testsDone, total: TESTS.length, sub: 'passed in time', color: '#fbbf24' },
-    { label: 'Countdown', value: daysLeft, total: 0, sub: 'days to interview window', color: '#f472b6' },
   ]
 
   return (
@@ -46,10 +45,8 @@ export default function App() {
 
         <StatTiles metrics={metrics} />
         <Momentum store={store} />
-        <Roadmap />
-
         <Today store={store} />
-        <ThisWeek store={store} />
+        <WeeklyPlan store={store} />
 
         <LeetBoard store={store} />
 
