@@ -10,23 +10,23 @@ export default function Teasers({ store }: { store: Store }) {
   const done = TEASERS.filter((t) => store.isChecked(t.id)).length
   return (
     <Card className="flex h-full flex-col p-5">
-      <SectionTitle icon="🧩" title="Brain Teasers" right={<span className="font-mono text-[12px] text-muted">{done}/{TEASERS.length}</span>} />
+      <SectionTitle icon="🧩" title="Brain Teasers" right={<span className="font-mono text-[13.5px] text-muted">{done}/{TEASERS.length}</span>} />
       <ul className="space-y-2">
         {TEASERS.map((t) => (
           <li key={t.id} className="rounded-lg border border-white/8 bg-white/[0.02] px-3 py-2">
             <div className="flex items-start gap-2.5">
               <div className="pt-0.5"><Checkbox checked={store.isChecked(t.id)} onClick={() => store.toggle(t.id)} /></div>
-              <span className={`text-[13px] font-medium leading-snug ${store.isChecked(t.id) ? 'text-faint' : 'text-subtle'}`}>{t.q}</span>
-              <button onClick={() => setShown((s) => ({ ...s, [t.id]: !s[t.id] }))} className="ml-auto shrink-0 font-mono text-[11px] font-bold text-accent-violet hover:text-accent-teal">
+              <span className={`text-[14.5px] font-medium leading-snug ${store.isChecked(t.id) ? 'text-faint' : 'text-subtle'}`}>{t.q}</span>
+              <button onClick={() => setShown((s) => ({ ...s, [t.id]: !s[t.id] }))} className="ml-auto shrink-0 font-mono text-[13px] font-bold text-accent-violet hover:text-accent-teal">
                 {shown[t.id] ? 'hide' : 'hint'}
               </button>
             </div>
             <div className="ml-8 mt-1 flex items-center gap-3">
-              <span className="font-mono text-[10px] font-bold text-faint">wk {t.week}</span>
-              <a href={t.res.url} target="_blank" rel="noreferrer" className="font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+              <span className="font-mono text-[12px] font-bold text-faint">wk {t.week}</span>
+              <a href={t.res.url} target="_blank" rel="noreferrer" className="font-mono text-[13px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
                 {t.res.label} ↗
               </a>
-              {shown[t.id] && <span className="font-mono text-[11.5px] text-accent-teal">{t.hint}</span>}
+              {shown[t.id] && <span className="font-mono text-[13px] text-accent-teal">{t.hint}</span>}
             </div>
           </li>
         ))}

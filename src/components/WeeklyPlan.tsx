@@ -39,12 +39,12 @@ export default function WeeklyPlan({ store }: { store: Store }) {
 
   return (
     <Card className="p-5">
-      <SectionTitle icon="🗺️" title="Plan by Week" right={<span className="font-mono text-[12px] text-muted">13 weeks · click a week</span>} />
+      <SectionTitle icon="🗺️" title="Plan by Week" right={<span className="font-mono text-[13.5px] text-muted">13 weeks · click a week</span>} />
 
       {/* phase legend */}
       <div className="mb-3 flex flex-wrap gap-2">
         {PHASES.map((p) => (
-          <span key={p.n} className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[11px] font-bold" style={{ color: p.color, borderColor: `${p.color}55`, background: `${p.color}12` }}>
+          <span key={p.n} className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[13px] font-bold" style={{ color: p.color, borderColor: `${p.color}55`, background: `${p.color}12` }}>
             <span className="h-2 w-2 rounded-full" style={{ background: p.color }} />
             P{p.n} {p.title} · {p.range.split(' · ')[0]}
           </span>
@@ -62,7 +62,7 @@ export default function WeeklyPlan({ store }: { store: Store }) {
               key={w}
               onClick={() => setSel(w)}
               title={`Week ${w} · ${weekRange(w)}`}
-              className="relative rounded-lg border px-0 py-2 font-mono text-[12px] font-bold transition"
+              className="relative rounded-lg border px-0 py-2 font-mono text-[13.5px] font-bold transition"
               style={{
                 borderColor: active ? c : `${c}44`,
                 background: active ? `${c}28` : `${c}0d`,
@@ -83,21 +83,21 @@ export default function WeeklyPlan({ store }: { store: Store }) {
       {/* selected-week detail */}
       <div className="rounded-xl border p-4" style={{ borderColor: `${selPhase.color}44`, background: `${selPhase.color}0a` }}>
         <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-          <span className="font-display text-[15px] font-extrabold text-ink">Week {sel} {sel === now && <span className="ml-1 font-mono text-[11px] text-accent-pink">· now</span>}</span>
-          <span className="font-mono text-[12px] text-muted">{weekRange(sel)} · Phase {selPhase.n} · {selPhase.title}</span>
+          <span className="font-display text-[16px] font-extrabold text-ink">Week {sel} {sel === now && <span className="ml-1 font-mono text-[13px] text-accent-pink">· now</span>}</span>
+          <span className="font-mono text-[13.5px] text-muted">{weekRange(sel)} · Phase {selPhase.n} · {selPhase.title}</span>
         </div>
-        <p className="mb-3 text-[12.5px] leading-relaxed text-subtle">{selPhase.focus}</p>
+        <p className="mb-3 text-[14px] leading-relaxed text-subtle">{selPhase.focus}</p>
 
         {/* LeetCode target */}
         <div className="mb-3 rounded-lg border border-white/8 bg-white/[0.03] px-3 py-2">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[12px] font-bold text-accent-violet">LeetCode this week (3/day)</span>
-            <span className="font-mono text-[12px] text-muted">{lcDone}/{lc.length} solved</span>
+            <span className="font-mono text-[13.5px] font-bold text-accent-violet">LeetCode this week (3/day)</span>
+            <span className="font-mono text-[13.5px] text-muted">{lcDone}/{lc.length} solved</span>
           </div>
           <div className="mt-2"><ProgressBar value={lcDone} total={lc.length} color="#a78bfa" /></div>
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
             {lc.map((p) => (
-              <a key={p.slug} href={lcUrl(p.slug)} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1 text-[12px] ${store.isSolved(p.slug) ? 'text-faint line-through' : 'text-subtle hover:text-accent-teal hover:underline'}`}>
+              <a key={p.slug} href={lcUrl(p.slug)} target="_blank" rel="noreferrer" className={`inline-flex items-center gap-1 text-[13.5px] ${store.isSolved(p.slug) ? 'text-faint line-through' : 'text-subtle hover:text-accent-teal hover:underline'}`}>
                 <DiffPill d={p.difficulty} /> {p.title}
               </a>
             ))}
@@ -106,25 +106,25 @@ export default function WeeklyPlan({ store }: { store: Store }) {
 
         {/* weekly items */}
         {rows.length === 0 ? (
-          <p className="py-2 text-center font-mono text-[12.5px] text-muted">No weekly items — focus on LeetCode + review.</p>
+          <p className="py-2 text-center font-mono text-[14px] text-muted">No weekly items — focus on LeetCode + review.</p>
         ) : (
           <ul className="space-y-1">
             {rows.map((r) => (
               <li key={r.id} className="flex items-start gap-2.5 rounded-lg px-1.5 py-1.5 hover:bg-white/[0.03]">
                 <div className="pt-0.5"><Checkbox checked={r.checked} onClick={r.toggle} /></div>
                 <div className="min-w-0 flex-1">
-                  <span className={`text-[13px] font-semibold ${r.checked ? 'text-faint line-through' : 'text-subtle'}`}>{r.label}</span>
+                  <span className={`text-[14.5px] font-semibold ${r.checked ? 'text-faint line-through' : 'text-subtle'}`}>{r.label}</span>
                   {r.res && r.res.length > 0 && (
                     <span className="ml-2 inline-flex flex-wrap gap-x-2.5 gap-y-1">
                       {r.res.map((x) => (
-                        <a key={x.url} href={x.url} target="_blank" rel="noreferrer" className="whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                        <a key={x.url} href={x.url} target="_blank" rel="noreferrer" className="whitespace-nowrap font-mono text-[13px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
                           {x.label} ↗
                         </a>
                       ))}
                     </span>
                   )}
                 </div>
-                <span className="ml-auto shrink-0 rounded-full bg-white/6 px-2 py-0.5 font-mono text-[10px] font-bold text-faint">{r.tag}</span>
+                <span className="ml-auto shrink-0 rounded-full bg-white/6 px-2 py-0.5 font-mono text-[12px] font-bold text-faint">{r.tag}</span>
               </li>
             ))}
           </ul>

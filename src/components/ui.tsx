@@ -15,8 +15,8 @@ export function Card({ children, className = '' }: { children: ReactNode; classN
 export function SectionTitle({ icon, title, right }: { icon: string; title: string; right?: ReactNode }) {
   return (
     <div className="mb-4 flex items-center justify-between gap-3">
-      <h2 className="flex items-center gap-2.5 font-display text-[19px] font-extrabold uppercase tracking-wide text-ink">
-        <span className="text-[20px]">{icon}</span>
+      <h2 className="flex items-center gap-2.5 font-display text-[21px] font-extrabold uppercase tracking-wide text-ink">
+        <span className="text-[22px]">{icon}</span>
         {title}
       </h2>
       {right}
@@ -42,7 +42,7 @@ export function Checkbox({ checked, onClick, locked }: { checked: boolean; onCli
       onClick={onClick}
       aria-pressed={checked}
       title={locked ? 'Auto-checked from your LeetCode' : checked ? 'Done' : 'Mark done'}
-      className={`grid h-5 w-5 shrink-0 place-items-center rounded-md border text-[12px] font-black transition ${
+      className={`grid h-5 w-5 shrink-0 place-items-center rounded-md border text-[13.5px] font-black transition ${
         checked
           ? 'border-accent-teal/70 bg-accent-teal/20 text-accent-teal'
           : 'border-white/20 bg-white/[0.03] text-transparent hover:border-white/40'
@@ -57,7 +57,7 @@ export function DiffPill({ d }: { d: 'Easy' | 'Medium' | 'Hard' }) {
   const c = d === 'Easy' ? '#34d399' : d === 'Medium' ? '#fbbf24' : '#fb7185'
   return (
     <span
-      className="rounded-md border px-1.5 py-0.5 font-mono text-[10.5px] font-extrabold uppercase"
+      className="rounded-md border px-1.5 py-0.5 font-mono text-[12.5px] font-extrabold uppercase"
       style={{ color: c, borderColor: `${c}66`, background: `${c}1f` }}
     >
       {d[0]}
@@ -68,7 +68,7 @@ export function DiffPill({ d }: { d: 'Easy' | 'Medium' | 'Hard' }) {
 export function Pill({ children, color = '#818cf8' }: { children: ReactNode; color?: string }) {
   return (
     <span
-      className="rounded-full border px-2.5 py-1 font-mono text-[11px] font-bold"
+      className="rounded-full border px-2.5 py-1 font-mono text-[13px] font-bold"
       style={{ color, borderColor: `${color}55`, background: `${color}14` }}
     >
       {children}

@@ -56,7 +56,7 @@ export default function SyncNow() {
       <button
         onClick={run}
         disabled={busy}
-        className={`rounded-lg border px-3 py-1.5 font-mono text-[12px] font-bold transition ${
+        className={`rounded-lg border px-3 py-1.5 font-mono text-[13.5px] font-bold transition ${
           busy
             ? 'border-accent-teal/40 bg-accent-teal/10 text-accent-teal/70'
             : 'border-accent-teal/50 bg-accent-teal/15 text-accent-teal hover:-translate-y-px'
@@ -65,7 +65,7 @@ export default function SyncNow() {
         {busy && <span className="mr-1.5 inline-block animate-spin">⟳</span>}
         {label}
       </button>
-      {msg && <span className="font-mono text-[11px] text-faint">{msg}</span>}
+      {msg && <span className="font-mono text-[13px] text-faint">{msg}</span>}
     </div>
   )
 }

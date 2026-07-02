@@ -75,7 +75,7 @@ export default function App() {
           <TimedTests store={store} />
         </div>
 
-        <footer className="mt-4 pb-8 text-center font-mono text-[11.5px] text-faint">
+        <footer className="mt-4 pb-8 text-center font-mono text-[13px] text-faint">
           Mission Frontier · 3-month core plan (Jul 6 – Oct 4, 2026) · built for the OpenAI Residency
         </footer>
       </main>

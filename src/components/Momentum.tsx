@@ -28,14 +28,14 @@ export default function Momentum({ store }: { store: Store }) {
       <div className="flex flex-wrap items-center gap-6">
         <div>
           <div className="font-display text-[30px] font-extrabold leading-none text-accent-coral">{store.profile.streak}</div>
-          <div className="font-mono text-[11.5px] text-muted">day LeetCode streak 🔥</div>
+          <div className="font-mono text-[13px] text-muted">day LeetCode streak 🔥</div>
         </div>
         <div>
           <div className="font-display text-[30px] font-extrabold leading-none text-accent-teal">{store.profile.totalActiveDays}</div>
-          <div className="font-mono text-[11.5px] text-muted">active days (past year)</div>
+          <div className="font-mono text-[13px] text-muted">active days (past year)</div>
         </div>
         <div className="ml-auto">
-          <div className="mb-1.5 font-mono text-[11px] uppercase tracking-wide text-faint">13-week progress</div>
+          <div className="mb-1.5 font-mono text-[13px] uppercase tracking-wide text-faint">13-week progress</div>
           <div className="flex gap-1.5">
             {weeks.map((wk) => {
               const alpha = 0.12 + wk.ratio * 0.85
@@ -43,7 +43,7 @@ export default function Momentum({ store }: { store: Store }) {
                 <div
                   key={wk.w}
                   title={`Week ${wk.w} · ${weekRange(wk.w)} · ${wk.done}/${wk.total} (${Math.round(wk.ratio * 100)}%)`}
-                  className="grid h-9 w-9 place-items-center rounded-md font-mono text-[10px] font-bold transition"
+                  className="grid h-9 w-9 place-items-center rounded-md font-mono text-[12px] font-bold transition"
                   style={{
                     background: `rgba(70,224,208,${alpha})`,
                     color: wk.ratio > 0.4 ? '#04121a' : '#9B98C8',

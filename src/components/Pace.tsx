@@ -32,10 +32,10 @@ export default function Pace({ store }: { store: Store }) {
       className="flex flex-wrap items-center gap-x-6 gap-y-2 rounded-2xl border px-5 py-3.5 backdrop-blur-md"
       style={{ borderColor: `${color}55`, background: `${color}12` }}
     >
-      <span className="font-display text-[16px] font-extrabold" style={{ color }}>
+      <span className="font-display text-[17px] font-extrabold" style={{ color }}>
         {headline}
       </span>
-      <span className="ml-auto font-mono text-[12px] text-muted">
+      <span className="ml-auto font-mono text-[13.5px] text-muted">
         done <span className="font-bold text-ink">{haveDone}</span> · due by now <span className="font-bold text-ink">{shouldHave}</span>
         {behind > 0 && <> · <span className="font-bold text-accent-pink">{behind}</span> overdue</>}
       </span>
