@@ -8,3 +8,5 @@ vite.config.js
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+
+vite.config.d.ts
