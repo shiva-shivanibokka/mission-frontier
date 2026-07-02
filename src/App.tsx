@@ -4,6 +4,7 @@ import StatTiles, { type Metric } from './components/StatTiles'
 import Roadmap from './components/Roadmap'
 import Today from './components/Today'
 import ThisWeek from './components/ThisWeek'
+import Momentum from './components/Momentum'
 import LeetBoard from './components/LeetBoard'
 import Checklist from './components/Checklist'
 import BuildTrack from './components/BuildTrack'
@@ -42,6 +43,7 @@ export default function App() {
         </div>
 
         <StatTiles metrics={metrics} />
+        <Momentum store={store} />
         <Roadmap />
 
         <Today store={store} />

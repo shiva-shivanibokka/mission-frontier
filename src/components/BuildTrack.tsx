@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BUILD } from '../data/tracks'
 import type { Store } from '../lib/store'
 import { Card, SectionTitle, ProgressBar, Checkbox, Pill } from './ui'
@@ -7,6 +8,7 @@ const KIND_COLOR: Record<string, string> = { flagship: '#818cf8', reproduction: 
 // The from-scratch build track: three milestones (autograd+optimizers flagship,
 // GPT reproduction, original grokking study), each with checkable steps + papers.
 export default function BuildTrack({ store }: { store: Store }) {
+  const [openNote, setOpenNote] = useState<Record<string, boolean>>({})
   const allSteps = BUILD.flatMap((m) => m.steps)
   const done = allSteps.filter((s) => store.isChecked(s.id)).length
   return (
@@ -40,7 +42,22 @@ export default function BuildTrack({ store }: { store: Store }) {
                             {r.label} ↗
                           </a>
                         ))}
+                        <button
+                          onClick={() => setOpenNote((o) => ({ ...o, [s.id]: !o[s.id] }))}
+                          className="font-mono text-[10.5px] font-bold text-accent-violet hover:text-accent-teal"
+                        >
+                          {store.getNote(s.id) ? '✎ note•' : '✎ note'}
+                        </button>
                       </div>
+                      {openNote[s.id] && (
+                        <textarea
+                          value={store.getNote(s.id)}
+                          onChange={(e) => store.setNote(s.id, e.target.value)}
+                          placeholder="findings, results, gotchas…"
+                          rows={2}
+                          className="mt-1.5 w-full resize-y rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1.5 text-[12px] text-ink outline-none placeholder:text-faint focus:border-accent-teal/60"
+                        />
+                      )}
                     </div>
                   </li>
                 ))}

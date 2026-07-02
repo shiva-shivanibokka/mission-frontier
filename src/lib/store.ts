@@ -18,16 +18,21 @@ export interface Profile {
   totalSolved: number
   ranking: number | null
   streak: number
+  totalActiveDays: number
   byDifficulty: Record<'Easy' | 'Medium' | 'Hard', { solved: number; total: number }>
 }
 const EMPTY_PROFILE: Profile = {
   totalSolved: 0,
   ranking: null,
   streak: 0,
+  totalActiveDays: 0,
   byDifficulty: { Easy: { solved: 0, total: 0 }, Medium: { solved: 0, total: 0 }, Hard: { solved: 0, total: 0 } },
 }
 
-type Checks = Record<string, boolean>
+// Values are booleans for checkboxes, or strings for notes (stored under a
+// "note:<id>" key so they never collide with check ids).
+type Checks = Record<string, boolean | string>
+const noteKey = (id: string) => `note:${id}`
 
 function readLocal(): Checks {
   try {
@@ -56,6 +61,8 @@ export interface Store {
   isChecked: (id: string) => boolean
   isSolved: (slug: string) => boolean
   toggle: (id: string) => void
+  getNote: (id: string) => string
+  setNote: (id: string, value: string) => void
   dirtyCount: number
   syncState: SyncState
   syncNow: () => void
@@ -97,8 +104,9 @@ export function useStore(): Store {
   }, [])
 
   const effective = useMemo(() => merge(baseline, local), [baseline, local])
-  const isChecked = useCallback((id: string) => !!effective[id], [effective])
-  const isSolved = useCallback((slug: string) => solved.has(slug) || !!effective[slug], [solved, effective])
+  const isChecked = useCallback((id: string) => effective[id] === true, [effective])
+  const isSolved = useCallback((slug: string) => solved.has(slug) || effective[slug] === true, [solved, effective])
+  const getNote = useCallback((id: string) => (effective[noteKey(id)] as string) || '', [effective])
 
   const toggle = useCallback((id: string) => {
     setLocal((prev) => {
@@ -109,9 +117,21 @@ export function useStore(): Store {
     })
   }, [])
 
+  const setNote = useCallback((id: string, value: string) => {
+    setLocal((prev) => {
+      const k = noteKey(id)
+      const next = { ...prev }
+      if (value.trim()) next[k] = value
+      else delete next[k]
+      writeLocal(next)
+      return next
+    })
+  }, [])
+
   const dirtyCount = useMemo(() => {
     let n = 0
-    for (const k of Object.keys(local)) if (!!local[k] !== !!baseline[k]) n++
+    const keys = new Set([...Object.keys(local), ...Object.keys(baseline)])
+    for (const k of keys) if (local[k] !== undefined && local[k] !== baseline[k]) n++
     return n
   }, [local, baseline])
 
@@ -136,5 +156,5 @@ export function useStore(): Store {
     return () => window.clearTimeout(timer.current)
   }, [local, dirtyCount, loading, syncNow])
 
-  return { loading, generatedAt, profile, solved, isChecked, isSolved, toggle, dirtyCount, syncState, syncNow }
+  return { loading, generatedAt, profile, solved, isChecked, isSolved, toggle, getNote, setNote, dirtyCount, syncState, syncNow }
 }

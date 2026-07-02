@@ -26,7 +26,7 @@ export default function SyncSettings({ store }: { store: Store }) {
   return (
     <div className="text-right">
       <button onClick={() => setOpen((o) => !o)} className="font-mono text-[11.5px] text-faint hover:text-subtle">
-        ⚙ sync: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''}
+        ⚙ check-offs: {label}{store.dirtyCount > 0 ? ` · ${store.dirtyCount} unsaved` : ''} · LeetCode auto-syncs
       </button>
       {open && (
         <div className="mt-2 w-[320px] rounded-xl border border-white/10 bg-card/90 p-3 text-left backdrop-blur-md">

@@ -24,7 +24,7 @@ export default function Header({ generatedAt }: { generatedAt: string | null }) 
         <div className="ml-auto hidden text-right sm:block">
           <div className="font-display text-[30px] font-extrabold leading-none text-ink">{days}</div>
           <div className="font-mono text-[12px] text-muted">days to interview window</div>
-          <div className="font-mono text-[11px] text-faint">~{prettyDate(TARGET_DATE)} 2027</div>
+          <div className="font-mono text-[11px] text-faint">~{prettyDate(TARGET_DATE)} 2027 · tentative</div>
         </div>
       </div>
     </header>
