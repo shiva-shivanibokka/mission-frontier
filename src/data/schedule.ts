@@ -1,4 +1,4 @@
-import { NEETCODE_150, type LCProblem } from './leetcode'
+import { NEETCODE, type LCProblem } from './leetcode'
 import { PLAN_START, DAILY_QUOTA, addDays } from './meta'
 
 // Turn the ordered NeetCode 150 into a dated daily schedule: DAILY_QUOTA problems
@@ -20,7 +20,7 @@ export function buildSchedule(): PlanDay[] {
   const days: PlanDay[] = []
   let cursor = PLAN_START
   let studyDay = 0
-  for (let i = 0; i < NEETCODE_150.length; i += DAILY_QUOTA) {
+  for (let i = 0; i < NEETCODE.length; i += DAILY_QUOTA) {
     // advance to the next non-Sunday date
     while (isSunday(cursor)) cursor = addDays(cursor, 1)
     studyDay++
@@ -28,7 +28,7 @@ export function buildSchedule(): PlanDay[] {
       index: studyDay,
       date: cursor,
       week: Math.ceil(studyDay / 6),
-      problems: NEETCODE_150.slice(i, i + DAILY_QUOTA),
+      problems: NEETCODE.slice(i, i + DAILY_QUOTA),
     })
     cursor = addDays(cursor, 1)
   }

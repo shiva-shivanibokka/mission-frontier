@@ -16,7 +16,7 @@ Live: `https://shiva-shivanibokka.github.io/mission-frontier/` (once Pages is en
 | Track | What it does |
 |---|---|
 | **Today’s Quota** | The 3 scheduled LeetCode problems for the current date; fills itself in as you solve them |
-| **LeetCode · NeetCode 150** | The full 150 grouped by pattern, with per-pattern progress. Auto-checked from your LeetCode |
+| **LeetCode · NeetCode 250** | All 250 grouped by pattern (each tagged Easy/Medium/Hard), with per-pattern progress. Auto-checked from your LeetCode |
 | **Math** | Probability, linear algebra, matrix calculus, information theory — with curated resources |
 | **Build From Scratch** | Autograd + optimizers flagship → GPT reproduction → an original grokking study, each with checkable steps + papers |
 | **Production Coding** | Clean components + ML-from-scratch drills (LRU, BPE, All-Reduce, logistic regression, …) |
@@ -85,7 +85,7 @@ GitHub Actions builds on every push and on a 6-hourly cron (which also refreshes
 ## Notes & honesty
 
 - The **countdown target** (`TARGET_DATE`) is an approximate interview window; update it when real dates are known.
-- The LeetCode backbone is the **NeetCode 150** — the "main parts" for the core 3 months; extend the list in `src/data/leetcode.ts` afterward.
+- The LeetCode backbone is the **NeetCode 250** (curated), each tagged Easy/Medium/Hard and grouped by category; edit the list in `src/data/leetcode.ts`.
 - No fabricated stats: every number on the page is computed from your actual data or from checkboxes you tick.
 
 ## License

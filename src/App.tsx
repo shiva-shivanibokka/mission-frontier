@@ -12,21 +12,21 @@ import TimedTests from './components/TimedTests'
 import Rounds from './components/Rounds'
 import SyncSettings from './components/SyncSettings'
 import { useStore } from './lib/store'
-import { NEETCODE_150 } from './data/leetcode'
+import { NEETCODE } from './data/leetcode'
 import { BUILD, MATH, MATH_RESOURCES, PRODUCTION, PRODUCTION_NOTE, TESTS } from './data/tracks'
 import { TARGET_DATE, daysUntil } from './data/meta'
 
 export default function App() {
   const store = useStore()
 
-  const lcDone = NEETCODE_150.filter((p) => store.isSolved(p.slug)).length
+  const lcDone = NEETCODE.filter((p) => store.isSolved(p.slug)).length
   const buildSteps = BUILD.flatMap((m) => m.steps)
   const buildDone = buildSteps.filter((s) => store.isChecked(s.id)).length
   const testsDone = TESTS.filter((t) => store.isChecked(t.id)).length
   const daysLeft = Math.max(0, daysUntil(TARGET_DATE))
 
   const metrics: Metric[] = [
-    { label: 'LeetCode', value: lcDone, total: NEETCODE_150.length, sub: 'NeetCode 150 · auto-synced', color: '#a78bfa' },
+    { label: 'LeetCode', value: lcDone, total: NEETCODE.length, sub: 'NeetCode 250 · auto-synced', color: '#a78bfa' },
     { label: 'Build track', value: buildDone, total: buildSteps.length, sub: 'from-scratch steps', color: '#46e0d0' },
     { label: 'Timed tests', value: testsDone, total: TESTS.length, sub: 'passed in time', color: '#fbbf24' },
     { label: 'Countdown', value: daysLeft, total: 0, sub: 'days to interview window', color: '#f472b6' },

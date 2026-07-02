@@ -39,9 +39,13 @@ export default function Checklist({
               <span className={`text-[13.5px] font-semibold ${store.isChecked(i.id) ? 'text-faint line-through' : 'text-subtle'}`}>{i.label}</span>
               {i.detail && <span className="ml-2 font-mono text-[11px] text-faint">{i.detail}</span>}
               {i.res && (
-                <a href={i.res.url} target="_blank" rel="noreferrer" className="ml-2 whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
-                  {i.res.label} ↗
-                </a>
+                <span className="mt-1 flex flex-wrap gap-x-2.5 gap-y-1">
+                  {i.res.map((r) => (
+                    <a key={r.url} href={r.url} target="_blank" rel="noreferrer" className="whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                      {r.label} ↗
+                    </a>
+                  ))}
+                </span>
               )}
             </div>
             <span className="ml-auto flex shrink-0 items-center gap-1.5 pt-0.5">

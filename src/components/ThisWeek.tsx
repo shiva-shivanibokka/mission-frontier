@@ -8,30 +8,33 @@ import { Card, SectionTitle, Checkbox, ProgressBar } from './ui'
 // isn't LeetCode is distributed across the 13 weeks; this panel shows exactly
 // what's due THIS week across every track, each with a resource link to study
 // from, plus this week's LeetCode target.
+type Res = { label: string; url: string }
 function Row({
-  id,
   label,
   tag,
   res,
   checked,
   onToggle,
 }: {
-  id: string
   label: string
   tag: string
-  res?: { label: string; url: string }
+  res?: Res[]
   checked: boolean
   onToggle: () => void
 }) {
   return (
-    <li key={id} className="flex items-start gap-2.5 rounded-lg px-1.5 py-1.5 hover:bg-white/[0.03]">
+    <li className="flex items-start gap-2.5 rounded-lg px-1.5 py-1.5 hover:bg-white/[0.03]">
       <div className="pt-0.5"><Checkbox checked={checked} onClick={onToggle} /></div>
       <div className="min-w-0 flex-1">
         <span className={`text-[13px] font-semibold ${checked ? 'text-faint line-through' : 'text-subtle'}`}>{label}</span>
-        {res && (
-          <a href={res.url} target="_blank" rel="noreferrer" className="ml-2 whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
-            {res.label} ↗
-          </a>
+        {res && res.length > 0 && (
+          <span className="ml-2 inline-flex flex-wrap gap-x-2.5 gap-y-1">
+            {res.map((r) => (
+              <a key={r.url} href={r.url} target="_blank" rel="noreferrer" className="whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                {r.label} ↗
+              </a>
+            ))}
+          </span>
         )}
       </div>
       <span className="ml-auto shrink-0 rounded-full bg-white/6 px-2 py-0.5 font-mono text-[10px] font-bold text-faint">{tag}</span>
@@ -47,11 +50,11 @@ export default function ThisWeek({ store }: { store: Store }) {
   const lcThisWeek = SCHEDULE.filter((d) => weekOf(d.date) === week).flatMap((d) => d.problems)
   const lcDone = lcThisWeek.filter((p) => store.isSolved(p.slug)).length
 
-  const rows: { id: string; label: string; tag: string; res?: { label: string; url: string }; checked: boolean; toggle: () => void }[] = [
+  const rows: { id: string; label: string; tag: string; res?: Res[]; checked: boolean; toggle: () => void }[] = [
     ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res, checked: store.isChecked(m.id), toggle: () => store.toggle(m.id) })),
     ...b.build.map((s) => ({ id: s.id, label: `${s.label}`, tag: 'Build', res: s.res, checked: store.isChecked(s.id), toggle: () => store.toggle(s.id) })),
     ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res, checked: store.isChecked(p.id), toggle: () => store.toggle(p.id) })),
-    ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: t.res, checked: store.isChecked(t.id), toggle: () => store.toggle(t.id) })),
+    ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res], checked: store.isChecked(t.id), toggle: () => store.toggle(t.id) })),
     ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test', res: undefined, checked: store.isChecked(t.id), toggle: () => store.toggle(t.id) })),
   ]
   const done = rows.filter((r) => r.checked).length
@@ -89,7 +92,7 @@ export default function ThisWeek({ store }: { store: Store }) {
       ) : (
         <ul className="space-y-1">
           {rows.map((r) => (
-            <Row key={r.id} id={r.id} label={r.label} tag={r.tag} res={r.res} checked={r.checked} onToggle={r.toggle} />
+            <Row key={r.id} label={r.label} tag={r.tag} res={r.res} checked={r.checked} onToggle={r.toggle} />
           ))}
         </ul>
       )}

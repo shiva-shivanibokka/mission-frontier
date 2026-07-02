@@ -6,7 +6,7 @@ export const PLAN_START = '2026-07-06' // Monday — week boundaries are clean
 export const PLAN_WEEKS = 13
 export const TARGET_DATE = '2027-01-05' // interview window (approx.)
 export const LEETCODE_USER = 'YqGw1R8NKB'
-export const LEETCODE_GOAL = 150 // NeetCode 150 backbone; extend after the core block
+export const LEETCODE_GOAL = 250 // NeetCode 250 curated roadmap
 export const DAILY_QUOTA = 3
 
 export function todayISO(): string {

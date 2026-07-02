@@ -33,13 +33,13 @@ export default function BuildTrack({ store }: { store: Store }) {
                     <div className="pt-0.5"><Checkbox checked={store.isChecked(s.id)} onClick={() => store.toggle(s.id)} /></div>
                     <div className="min-w-0">
                       <span className={`text-[12.5px] font-medium leading-snug ${store.isChecked(s.id) ? 'text-faint line-through' : 'text-subtle'}`}>{s.label}</span>
-                      <div className="mt-0.5 flex items-center gap-2">
+                      <div className="mt-0.5 flex flex-wrap items-center gap-x-2.5 gap-y-1">
                         {s.week && <span className="font-mono text-[10px] font-bold text-faint">wk {s.week}</span>}
-                        {s.res && (
-                          <a href={s.res.url} target="_blank" rel="noreferrer" className="font-mono text-[10.5px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
-                            {s.res.label} ↗
+                        {s.res?.map((r) => (
+                          <a key={r.url} href={r.url} target="_blank" rel="noreferrer" className="font-mono text-[10.5px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                            {r.label} ↗
                           </a>
-                        )}
+                        ))}
                       </div>
                     </div>
                   </li>

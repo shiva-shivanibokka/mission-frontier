@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { NEETCODE_150, PATTERNS, lcUrl } from '../data/leetcode'
+import { NEETCODE, PATTERNS, lcUrl } from '../data/leetcode'
 import type { Store } from '../lib/store'
 import { Card, SectionTitle, DiffPill, ProgressBar, Checkbox } from './ui'
 
@@ -9,22 +9,22 @@ export default function LeetBoard({ store }: { store: Store }) {
   const [open, setOpen] = useState<string | null>(PATTERNS[0])
 
   const byPattern = useMemo(() => {
-    const m = new Map<string, typeof NEETCODE_150>()
-    for (const p of NEETCODE_150) {
+    const m = new Map<string, typeof NEETCODE>()
+    for (const p of NEETCODE) {
       if (!m.has(p.pattern)) m.set(p.pattern, [])
       m.get(p.pattern)!.push(p)
     }
     return m
   }, [])
 
-  const totalDone = NEETCODE_150.filter((p) => store.isSolved(p.slug)).length
+  const totalDone = NEETCODE.filter((p) => store.isSolved(p.slug)).length
 
   return (
     <Card className="p-5">
       <SectionTitle
         icon="⚔️"
-        title="LeetCode · NeetCode 150"
-        right={<span className="font-mono text-[12.5px] font-bold text-accent-teal">{totalDone}/{NEETCODE_150.length} solved</span>}
+        title="LeetCode · NeetCode 250"
+        right={<span className="font-mono text-[12.5px] font-bold text-accent-teal">{totalDone}/{NEETCODE.length} solved</span>}
       />
       <p className="mb-4 font-mono text-[11.5px] text-faint">
         Auto-checks from your LeetCode the moment you solve one · click a pattern to expand
