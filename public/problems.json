@@ -1,0 +1,16 @@
+{
+  "generatedAt": null,
+  "username": "YqGw1R8NKB",
+  "profile": {
+    "ranking": null,
+    "totalSolved": 0,
+    "byDifficulty": {
+      "Easy": { "solved": 0, "total": 0 },
+      "Medium": { "solved": 0, "total": 0 },
+      "Hard": { "solved": 0, "total": 0 }
+    },
+    "streak": 0,
+    "totalActiveDays": 0
+  },
+  "problems": []
+}
