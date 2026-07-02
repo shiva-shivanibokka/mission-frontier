@@ -111,25 +111,42 @@ export function useStore(): Store {
   const isSolved = useCallback((slug: string) => solved.has(slug) || effective[slug] === true, [solved, effective])
   const getNote = useCallback((id: string) => (effective[noteKey(id)] as string) || '', [effective])
 
-  const toggle = useCallback((id: string) => {
-    setLocal((prev) => {
-      const next = { ...prev, [id]: !prev[id] }
-      if (!next[id]) delete next[id]
-      writeLocal(next)
-      return next
-    })
-  }, [])
+  const toggle = useCallback(
+    (id: string) => {
+      setLocal((prev) => {
+        const currentlyOn = (id in prev ? prev[id] : baseline[id]) === true
+        const next = { ...prev }
+        if (currentlyOn) {
+          // turning OFF: tombstone (false) over a synced true, else just drop it
+          if (baseline[id] === true) next[id] = false
+          else delete next[id]
+        } else {
+          // turning ON: no override needed if baseline is already true
+          if (baseline[id] === true) delete next[id]
+          else next[id] = true
+        }
+        writeLocal(next)
+        return next
+      })
+    },
+    [baseline],
+  )
 
-  const setNote = useCallback((id: string, value: string) => {
-    setLocal((prev) => {
-      const k = noteKey(id)
-      const next = { ...prev }
-      if (value.trim()) next[k] = value
-      else delete next[k]
-      writeLocal(next)
-      return next
-    })
-  }, [])
+  const setNote = useCallback(
+    (id: string, value: string) => {
+      setLocal((prev) => {
+        const k = noteKey(id)
+        const next = { ...prev }
+        if (value.trim()) next[k] = value
+        // clearing: tombstone ('') over a synced note, else just drop it
+        else if (typeof baseline[k] === 'string' && (baseline[k] as string).trim()) next[k] = ''
+        else delete next[k]
+        writeLocal(next)
+        return next
+      })
+    },
+    [baseline],
+  )
 
   const dirtyCount = useMemo(() => {
     let n = 0
