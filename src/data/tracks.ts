@@ -54,7 +54,7 @@ export const MATH: CheckItem[] = [
   { id: 'math-expectation', label: 'Expectation, variance, linearity of expectation', phase: 1, week: 2, res: [
     { label: 'Khan — Random vars', url: 'https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library' },
     { label: 'StatQuest — Expectation', url: 'https://www.youtube.com/watch?v=KLs_7b7SKi4' },
-    { label: 'Stat 110', url: 'https://projects.iq.harvard.edu/stat110/home' },
+    { label: 'Stat 110 (videos)', url: 'https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo' },
   ] },
   { id: 'math-distributions', label: 'Common distributions: Bernoulli, Binomial, Gaussian, Poisson', phase: 1, week: 2, res: [
     { label: 'Seeing Theory', url: 'https://seeing-theory.brown.edu/probability-distributions/index.html' },
@@ -99,13 +99,13 @@ export const MATH: CheckItem[] = [
   { id: 'math-stats-tests', label: 'Estimators, bias/variance, confidence intervals, hypothesis tests', phase: 3, week: 11, res: [
     { label: 'Seeing Theory', url: 'https://seeing-theory.brown.edu/frequentist-inference/index.html' },
     { label: 'StatQuest — p-values', url: 'https://www.youtube.com/watch?v=vemZtEM63GY' },
-    { label: 'Stat 110', url: 'https://projects.iq.harvard.edu/stat110/home' },
+    { label: 'Stat 110 (videos)', url: 'https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo' },
   ] },
 ]
 export const MATH_RESOURCES: Resource[] = [
   { label: '3Blue1Brown — Essence of Linear Algebra', url: 'https://www.3blue1brown.com/topics/linear-algebra' },
   { label: 'Mathematics for Machine Learning (free PDF)', url: 'https://mml-book.github.io/' },
-  { label: 'Harvard Stat 110 (Blitzstein)', url: 'https://projects.iq.harvard.edu/stat110' },
+  { label: 'Harvard Stat 110 (videos)', url: 'https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo' },
 ]
 
 // ---- Build track (from scratch) --------------------------------------------
@@ -157,7 +157,7 @@ export const BUILD: BuildMilestone[] = [
       { id: 'gk-hypo', label: 'Form a hypothesis (what drives when generalization kicks in?)', week: 10, res: [{ label: 'Progress measures', url: 'https://arxiv.org/abs/2301.05217' }, { label: 'Grokking paper', url: 'https://arxiv.org/abs/2201.02177' }] },
       { id: 'gk-ablate', label: 'Original ablation: weight decay / data fraction / optimizer vs grokking speed', week: 11, res: [{ label: 'Progress measures', url: 'https://arxiv.org/abs/2301.05217' }, { label: 'Omnigrok', url: 'https://arxiv.org/abs/2210.01117' }] },
       { id: 'gk-plot', label: 'Clean plots of train vs val accuracy over steps', week: 12, res: [{ label: 'Matplotlib guide', url: 'https://matplotlib.org/stable/tutorials/index.html' }, { label: 'Grokking paper', url: 'https://arxiv.org/abs/2201.02177' }] },
-      { id: 'gk-present', label: '5-min presentation + writeup (research-interview rehearsal)', week: 13, res: [{ label: 'Alt: DPO paper', url: 'https://arxiv.org/abs/2305.18290' }, { label: 'How to give a talk', url: 'https://www.cs.cmu.edu/~mmv/tips.html' }] },
+      { id: 'gk-present', label: '5-min presentation + writeup (research-interview rehearsal)', week: 13, res: [{ label: 'Alt: DPO paper', url: 'https://arxiv.org/abs/2305.18290' }, { label: 'How to give a talk', url: 'https://www.youtube.com/watch?v=sT_-owjKIbA' }] },
     ],
   },
 ]
@@ -210,7 +210,7 @@ export const PRODUCTION: CheckItem[] = [
     { label: 'Redis expiry', url: 'https://redis.io/docs/latest/commands/expire/' },
   ] },
   { id: 'prod-retry', label: 'Retry-with-backoff wrapper + thread-safe queue', phase: 3, week: 11, res: [
-    { label: 'Backoff & jitter', url: 'https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/' },
+    { label: 'Google SRE — overload', url: 'https://sre.google/sre-book/handling-overload/' },
     { label: 'Exponential backoff', url: 'https://en.wikipedia.org/wiki/Exponential_backoff' },
     { label: 'Python queue', url: 'https://docs.python.org/3/library/queue.html' },
   ] },
@@ -227,8 +227,8 @@ export interface Teaser {
   res: Resource
 }
 export const TEASERS: Teaser[] = [
-  { id: 'bt-25horses', week: 1, q: '25 horses, 5 tracks, no timer. Fewest races to find the top 3?', hint: '7 races.', res: { label: 'Explanation', url: 'https://www.geeksforgeeks.org/puzzle-25-horses/' } },
-  { id: 'bt-ropes', week: 2, q: 'Two ropes each burn in 60 min unevenly. Measure 45 minutes.', hint: 'Burn one from both ends + one from one end.', res: { label: 'Explanation', url: 'https://www.geeksforgeeks.org/puzzle-measure-45-minutes-using-two-identical-wires/' } },
+  { id: 'bt-25horses', week: 1, q: '25 horses, 5 tracks, no timer. Fewest races to find the top 3?', hint: '7 races.', res: { label: 'Explanation', url: 'https://puzzling.stackexchange.com/questions/2517/how-do-i-find-the-3-fastest-horses' } },
+  { id: 'bt-ropes', week: 2, q: 'Two ropes each burn in 60 min unevenly. Measure 45 minutes.', hint: 'Burn one from both ends + one from one end.', res: { label: 'Explanation', url: 'https://puzzling.stackexchange.com/questions/9138/two-ropes-that-each-take-an-hour-to-burn-measure-45-minutes' } },
   { id: 'bt-100prisoners', week: 3, q: '100 prisoners, 100 boxes, find your number in ≤50 opens each. Strategy & odds?', hint: 'Follow the cycle / loop strategy → ~31%.', res: { label: 'Wikipedia', url: 'https://en.wikipedia.org/wiki/100_prisoners_problem' } },
   { id: 'bt-12balls', week: 4, q: '12 balls, one is off-weight (unknown heavier/lighter). 3 weighings to find it.', hint: 'Split 4-4-4; track which side.', res: { label: 'Balance puzzle', url: 'https://en.wikipedia.org/wiki/Balance_puzzle' } },
   { id: 'bt-bridge', week: 5, q: 'Four people cross a bridge at night, one torch, times 1/2/5/10, two at a time. Min total?', hint: '17 minutes.', res: { label: 'Wikipedia', url: 'https://en.wikipedia.org/wiki/Bridge_and_torch_problem' } },

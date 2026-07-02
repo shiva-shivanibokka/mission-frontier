@@ -4,7 +4,6 @@ import StatTiles, { type Metric } from './components/StatTiles'
 import WeeklyPlan from './components/WeeklyPlan'
 import Today from './components/Today'
 import Momentum from './components/Momentum'
-import LeetBoard from './components/LeetBoard'
 import Checklist from './components/Checklist'
 import BuildTrack from './components/BuildTrack'
 import Teasers from './components/Teasers'
@@ -47,8 +46,6 @@ export default function App() {
         <Momentum store={store} />
         <Today store={store} />
         <WeeklyPlan store={store} />
-
-        <LeetBoard store={store} />
 
         <div className="grid items-start gap-5 lg:grid-cols-2">
           <Checklist icon="📐" title="Math" items={MATH} store={store} resources={MATH_RESOURCES} color="#818cf8" />
