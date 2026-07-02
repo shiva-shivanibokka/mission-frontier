@@ -1,6 +1,7 @@
 import { ROUNDS } from '../data/tracks'
 import type { Store } from '../lib/store'
 import { Card, SectionTitle, Checkbox } from './ui'
+import NoteField from './NoteField'
 
 // Interview-round readiness: the actual OpenAI Residency loop, each with what it
 // is and how to prep. Check one off when you feel ready for it.
@@ -21,6 +22,7 @@ export default function Rounds({ store }: { store: Store }) {
                 <div className="text-[14px] font-bold text-ink">{r.title}</div>
                 <div className="text-[12.5px] text-muted">{r.detail}</div>
                 <div className="mt-1 font-mono text-[11.5px] text-accent-violet">Prep: <span className="text-subtle">{r.prep}</span></div>
+                <NoteField store={store} id={r.id} />
               </div>
             </div>
           </li>

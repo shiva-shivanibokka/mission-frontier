@@ -4,6 +4,8 @@ import StatTiles, { type Metric } from './components/StatTiles'
 import WeeklyPlan from './components/WeeklyPlan'
 import Today from './components/Today'
 import Momentum from './components/Momentum'
+import Pace from './components/Pace'
+import CatchUp from './components/CatchUp'
 import Checklist from './components/Checklist'
 import BuildTrack from './components/BuildTrack'
 import Teasers from './components/Teasers'
@@ -42,24 +44,36 @@ export default function App() {
           <SyncSettings store={store} />
         </div>
 
+        <Pace store={store} />
         <StatTiles metrics={metrics} />
         <Momentum store={store} />
-        <Today store={store} />
-        <WeeklyPlan store={store} />
+        <div id="catchup" className="scroll-mt-28">
+          <CatchUp store={store} />
+        </div>
+        <div id="today" className="scroll-mt-28">
+          <Today store={store} />
+        </div>
+        <div id="plan" className="scroll-mt-28">
+          <WeeklyPlan store={store} />
+        </div>
 
-        <div className="grid items-start gap-5 lg:grid-cols-2">
+        <div id="study" className="grid items-start gap-5 scroll-mt-28 lg:grid-cols-2">
           <Checklist icon="📐" title="Math" items={MATH} store={store} resources={MATH_RESOURCES} color="#818cf8" />
           <Checklist icon="⌨️" title="Production Coding" items={PRODUCTION} store={store} note={PRODUCTION_NOTE} color="#46e0d0" />
         </div>
 
-        <BuildTrack store={store} />
+        <div id="build" className="scroll-mt-28">
+          <BuildTrack store={store} />
+        </div>
 
-        <div className="grid items-start gap-5 lg:grid-cols-2">
+        <div id="prep" className="grid items-start gap-5 scroll-mt-28 lg:grid-cols-2">
           <Teasers store={store} />
           <Rounds store={store} />
         </div>
 
-        <TimedTests store={store} />
+        <div id="tests" className="scroll-mt-28">
+          <TimedTests store={store} />
+        </div>
 
         <footer className="mt-4 pb-8 text-center font-mono text-[11.5px] text-faint">
           Mission Frontier · 3-month core plan (Jul 6 – Oct 4, 2026) · built for the OpenAI Residency

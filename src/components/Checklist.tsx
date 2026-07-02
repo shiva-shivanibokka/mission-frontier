@@ -1,6 +1,7 @@
 import type { CheckItem, Resource } from '../data/tracks'
 import type { Store } from '../lib/store'
 import { Card, SectionTitle, ProgressBar, Checkbox, Pill } from './ui'
+import NoteField from './NoteField'
 
 // Generic checkbox list with optional resources footer — used by the Math and
 // Production-coding tracks.
@@ -47,6 +48,7 @@ export default function Checklist({
                   ))}
                 </span>
               )}
+              <NoteField store={store} id={i.id} />
             </div>
             <span className="ml-auto flex shrink-0 items-center gap-1.5 pt-0.5">
               {i.week && <Pill color="#9B98C8">wk {i.week}</Pill>}

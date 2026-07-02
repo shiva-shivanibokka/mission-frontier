@@ -27,6 +27,27 @@ export default function Header({ generatedAt }: { generatedAt: string | null }) 
           <div className="font-mono text-[11px] text-faint">~{prettyDate(TARGET_DATE)} 2027 · tentative</div>
         </div>
       </div>
+
+      {/* jump-to bar */}
+      <nav className="mx-auto -mt-1 flex max-w-6xl gap-1 overflow-x-auto px-5 pb-2.5">
+        {[
+          ['today', 'Today'],
+          ['plan', 'Plan'],
+          ['catchup', 'Catch-up'],
+          ['study', 'Math + Drills'],
+          ['build', 'Build'],
+          ['prep', 'Interview Prep'],
+          ['tests', 'Timed Tests'],
+        ].map(([id, label]) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className="whitespace-nowrap rounded-lg px-2.5 py-1 font-mono text-[12px] font-bold text-muted transition hover:bg-white/10 hover:text-ink"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
     </header>
   )
 }
