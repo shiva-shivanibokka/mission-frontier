@@ -24,19 +24,33 @@ export function lcScheduled(): Dated[] {
   )
 }
 
+// One canonical flattening of a week's non-LeetCode items, in the order
+// math → build → production → teasers → tests. Shared by the Today slice, the
+// Weekly plan and the pacing/catch-up math so the three never drift apart.
+export interface NonLcItem {
+  id: string
+  label: string
+  tag: string
+  res?: { label: string; url: string }[]
+}
+
+export function nonLcItemsForWeek(week: number): NonLcItem[] {
+  const b = itemsForWeek(week)
+  return [
+    ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res })),
+    ...b.build.map((s) => ({ id: s.id, label: s.label, tag: 'Build', res: s.res })),
+    ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res })),
+    ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res] })),
+    ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test' })),
+  ]
+}
+
 export function nonLcAssignments(): Dated[] {
   const out: Dated[] = []
   for (let w = 1; w <= PLAN_WEEKS; w++) {
     const weekDays = SCHEDULE.filter((d) => weekOf(d.date) === w)
     if (!weekDays.length) continue
-    const b = itemsForWeek(w)
-    const items: { id: string; label: string; tag: string; res?: { label: string; url: string }[] }[] = [
-      ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res })),
-      ...b.build.map((s) => ({ id: s.id, label: s.label, tag: 'Build', res: s.res })),
-      ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res })),
-      ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res] })),
-      ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title}`, tag: 'Test' })),
-    ]
+    const items = nonLcItemsForWeek(w)
     const len = weekDays.length
     items.forEach((it, i) => out.push({ ...it, kind: 'other', date: weekDays[i % len].date }))
   }

@@ -35,7 +35,7 @@ export default {
         card: '0 10px 40px -20px rgba(0,0,0,0.8)',
       },
       gridTemplateColumns: {
-        13: 'repeat(13, minmax(0, 1fr))',
+        14: 'repeat(14, minmax(0, 1fr))',
       },
     },
   },

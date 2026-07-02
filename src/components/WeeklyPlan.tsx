@@ -4,9 +4,10 @@ import { SCHEDULE } from '../data/schedule'
 import { PLAN_WEEKS, currentWeek, weekOf, weekRange } from '../data/meta'
 import { lcUrl } from '../data/leetcode'
 import type { Store } from '../lib/store'
+import { nonLcItemsForWeek } from '../lib/pacing'
 import { Card, SectionTitle, Checkbox, ProgressBar, DiffPill } from './ui'
 
-// Interactive 13-week planner (replaces the old static phase box). Click any week
+// Interactive 14-week planner (replaces the old static phase box). Click any week
 // to see exactly what's assigned that week — its LeetCode target plus the weekly
 // math / build / production / teaser / test items, each with a resource link.
 const phaseOf = (w: number): 1 | 2 | 3 => (w <= 4 ? 1 : w <= 9 ? 2 : 3)
@@ -25,21 +26,18 @@ export default function WeeklyPlan({ store }: { store: Store }) {
     return { lc, lcDone, ratio: total ? (lcDone + wkDone) / total : 0 }
   }
 
-  const b = itemsForWeek(sel)
   const selPhase = PHASES[phaseOf(sel) - 1]
   const { lc, lcDone } = weekStats(sel)
 
-  const rows: { id: string; label: string; tag: string; res?: { label: string; url: string }[]; checked: boolean; toggle: () => void }[] = [
-    ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res, checked: store.isChecked(m.id), toggle: () => store.toggle(m.id) })),
-    ...b.build.map((s) => ({ id: s.id, label: s.label, tag: 'Build', res: s.res, checked: store.isChecked(s.id), toggle: () => store.toggle(s.id) })),
-    ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res, checked: store.isChecked(p.id), toggle: () => store.toggle(p.id) })),
-    ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res], checked: store.isChecked(t.id), toggle: () => store.toggle(t.id) })),
-    ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test', checked: store.isChecked(t.id), toggle: () => store.toggle(t.id) })),
-  ]
+  const rows = nonLcItemsForWeek(sel).map((it) => ({
+    ...it,
+    checked: store.isChecked(it.id),
+    toggle: () => store.toggle(it.id),
+  }))
 
   return (
     <Card className="p-5">
-      <SectionTitle icon="🗺️" title="Plan by Week" right={<span className="font-mono text-[13.5px] text-muted">13 weeks · click a week</span>} />
+      <SectionTitle icon="🗺️" title="Plan by Week" right={<span className="font-mono text-[13.5px] text-muted">{PLAN_WEEKS} weeks · click a week</span>} />
 
       {/* phase legend */}
       <div className="mb-3 flex flex-wrap gap-2">
@@ -52,7 +50,7 @@ export default function WeeklyPlan({ store }: { store: Store }) {
       </div>
 
       {/* week selector */}
-      <div className="mb-4 grid grid-cols-7 gap-1.5 sm:grid-cols-13">
+      <div className="mb-4 grid grid-cols-7 gap-1.5 sm:grid-cols-14">
         {Array.from({ length: PLAN_WEEKS }, (_, i) => i + 1).map((w) => {
           const c = PHASES[phaseOf(w) - 1].color
           const { ratio } = weekStats(w)

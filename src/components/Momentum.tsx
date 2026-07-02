@@ -4,7 +4,7 @@ import { PLAN_WEEKS, currentWeek, weekOf, weekRange } from '../data/meta'
 import type { Store } from '../lib/store'
 import { Card, SectionTitle } from './ui'
 
-// Momentum: your LeetCode streak + active days, and a 13-week progress heatmap so
+// Momentum: your LeetCode streak + active days, and a 14-week progress heatmap so
 // you can see at a glance which weeks you crushed and which slipped. Each cell's
 // fill = that week's completion (LeetCode solved + weekly items done).
 export default function Momentum({ store }: { store: Store }) {
@@ -35,7 +35,7 @@ export default function Momentum({ store }: { store: Store }) {
           <div className="font-mono text-[13px] text-muted">active days (past year)</div>
         </div>
         <div className="ml-auto">
-          <div className="mb-1.5 font-mono text-[13px] uppercase tracking-wide text-faint">13-week progress</div>
+          <div className="mb-1.5 font-mono text-[13px] uppercase tracking-wide text-faint">{PLAN_WEEKS}-week progress</div>
           <div className="flex gap-1.5">
             {weeks.map((wk) => {
               const alpha = 0.12 + wk.ratio * 0.85

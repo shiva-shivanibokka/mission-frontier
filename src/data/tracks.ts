@@ -4,7 +4,7 @@
 //
 // Every checkable item carries:
 //   - a stable `id` (the key in the progress store)
-//   - a `week` (1..13) so it lands in the weekly quota, mirroring the daily
+//   - a `week` (1..14) so it lands in the weekly quota, mirroring the daily
 //     LeetCode quota — LeetCode is daily, everything else is weekly
 //   - a `res` resource link you can open and study from right there
 
@@ -36,7 +36,7 @@ export interface Phase {
 export const PHASES: Phase[] = [
   { n: 1, title: 'Foundations', range: 'Jul 5 – Aug 1 · wk 1–4', focus: 'Core LeetCode patterns · probability & linear algebra · build the autograd + optimizers flagship', color: '#818cf8' },
   { n: 2, title: 'Depth', range: 'Aug 2 – Sep 5 · wk 5–9', focus: 'Trees→Graphs→DP · matrix calculus & info theory · GPT-from-scratch + ablation · production drills', color: '#46e0d0' },
-  { n: 3, title: 'Original work + full mock loop', range: 'Sep 6 – Oct 3 · wk 10–13', focus: 'Greedy/intervals/math · original project · behavioral + AI-safety · full timed mock interviews', color: '#f472b6' },
+  { n: 3, title: 'Original work + full mock loop', range: 'Sep 6 – Oct 10 · wk 10–14', focus: 'Greedy/intervals/math · original project · behavioral + AI-safety · full timed mock interviews', color: '#f472b6' },
 ]
 
 // ---- Math track -------------------------------------------------------------
@@ -157,7 +157,7 @@ export const BUILD: BuildMilestone[] = [
       { id: 'gk-hypo', label: 'Form a hypothesis (what drives when generalization kicks in?)', week: 10, res: [{ label: 'Progress measures', url: 'https://arxiv.org/abs/2301.05217' }, { label: 'Grokking paper', url: 'https://arxiv.org/abs/2201.02177' }] },
       { id: 'gk-ablate', label: 'Original ablation: weight decay / data fraction / optimizer vs grokking speed', week: 11, res: [{ label: 'Progress measures', url: 'https://arxiv.org/abs/2301.05217' }, { label: 'Omnigrok', url: 'https://arxiv.org/abs/2210.01117' }] },
       { id: 'gk-plot', label: 'Clean plots of train vs val accuracy over steps', week: 12, res: [{ label: 'Matplotlib guide', url: 'https://matplotlib.org/stable/tutorials/index.html' }, { label: 'Grokking paper', url: 'https://arxiv.org/abs/2201.02177' }] },
-      { id: 'gk-present', label: '5-min presentation + writeup (research-interview rehearsal)', week: 13, res: [{ label: 'Alt: DPO paper', url: 'https://arxiv.org/abs/2305.18290' }, { label: 'How to give a talk', url: 'https://www.youtube.com/watch?v=sT_-owjKIbA' }] },
+      { id: 'gk-present', label: '5-min presentation + writeup (research-interview rehearsal)', week: 14, res: [{ label: 'Alt: DPO paper', url: 'https://arxiv.org/abs/2305.18290' }, { label: 'How to give a talk', url: 'https://www.youtube.com/watch?v=sT_-owjKIbA' }] },
     ],
   },
 ]

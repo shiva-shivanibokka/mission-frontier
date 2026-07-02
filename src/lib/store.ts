@@ -49,7 +49,10 @@ function merge(baseline: Checks, local: Checks): Checks {
 }
 function clean(c: Checks): Checks {
   const out: Checks = {}
-  for (const [k, v] of Object.entries(c)) if (v) out[k] = true
+  for (const [k, v] of Object.entries(c)) {
+    if (v === true) out[k] = true
+    else if (typeof v === 'string' && v.trim()) out[k] = v
+  }
   return out
 }
 

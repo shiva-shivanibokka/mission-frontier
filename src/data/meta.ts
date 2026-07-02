@@ -1,18 +1,17 @@
 // Global plan constants. The 3-month "core" block opens Sun 2026-07-05 and runs
-// 13 weeks to Sat 2026-10-03. Sunday is a rest/catch-up day, so the first study
+// 14 weeks to Sat 2026-10-10. Sunday is a rest/catch-up day, so the first study
 // day lands on Mon 2026-07-06 (see schedule.ts). The countdown targets the
 // OpenAI Residency interview window (~January 2027); adjust TARGET once real
 // dates are known.
 
 export const PLAN_START = '2026-07-05' // Sunday — plan opens here; study starts Mon Jul 6
-export const PLAN_WEEKS = 13
+export const PLAN_WEEKS = 14
 export const TARGET_DATE = '2027-01-05' // interview window (approx.)
-export const LEETCODE_USER = 'YqGw1R8NKB'
-export const LEETCODE_GOAL = 250 // NeetCode 250 curated roadmap
 export const DAILY_QUOTA = 3
 
 export function todayISO(): string {
-  return new Date().toISOString().slice(0, 10)
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 // Whole days from today until an ISO date (negative if past).
@@ -43,7 +42,7 @@ export function currentWeek(): number {
   return weekOf(todayISO())
 }
 
-// The Mon–Sun date range string for a plan week.
+// The Sun–Sat date range string for a plan week (PLAN_START is a Sunday).
 export function weekRange(week: number): string {
   const start = addDays(PLAN_START, (week - 1) * 7)
   return `${prettyDate(start)} – ${prettyDate(addDays(start, 6))}`

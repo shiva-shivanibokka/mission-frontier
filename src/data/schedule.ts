@@ -8,7 +8,6 @@ import { PLAN_START, DAILY_QUOTA, addDays } from './meta'
 export interface PlanDay {
   index: number // 1-based study-day number
   date: string // YYYY-MM-DD
-  week: number // 1-based
   problems: LCProblem[]
 }
 
@@ -27,7 +26,6 @@ export function buildSchedule(): PlanDay[] {
     days.push({
       index: studyDay,
       date: cursor,
-      week: Math.ceil(studyDay / 6),
       problems: NEETCODE.slice(i, i + DAILY_QUOTA),
     })
     cursor = addDays(cursor, 1)
@@ -46,8 +44,4 @@ export function dayForDate(iso: string): PlanDay {
     else break
   }
   return chosen
-}
-
-export function scheduleBounds() {
-  return { first: SCHEDULE[0]?.date, last: SCHEDULE[SCHEDULE.length - 1]?.date, count: SCHEDULE.length }
 }

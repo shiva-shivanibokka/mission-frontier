@@ -1,11 +1,9 @@
 import { dayForDate, SCHEDULE } from '../data/schedule'
-import { itemsForWeek } from '../data/tracks'
 import { lcUrl } from '../data/leetcode'
 import { todayISO, prettyDate, weekOf, DAILY_QUOTA } from '../data/meta'
 import type { Store } from '../lib/store'
+import { nonLcItemsForWeek } from '../lib/pacing'
 import { Card, SectionTitle, DiffPill, Checkbox } from './ui'
-
-type Res = { label: string; url: string }
 
 // Today's quota across every track. LeetCode is a true daily quota (3/day).
 // Everything else is assigned weekly, so we PACE the week's items evenly across
@@ -22,14 +20,7 @@ export default function Today({ store }: { store: Store }) {
   const weekDays = SCHEDULE.filter((d) => weekOf(d.date) === week)
   const len = weekDays.length || 1
   const pos = Math.max(0, weekDays.findIndex((d) => d.date === day.date))
-  const b = itemsForWeek(week)
-  const nonLC: { id: string; label: string; tag: string; res?: Res[] }[] = [
-    ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res })),
-    ...b.build.map((s) => ({ id: s.id, label: s.label, tag: 'Build', res: s.res })),
-    ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res })),
-    ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res] })),
-    ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test' })),
-  ]
+  const nonLC = nonLcItemsForWeek(week)
   const todayItems = nonLC.filter((_, i) => i % len === pos)
   const otherDone = todayItems.filter((x) => store.isChecked(x.id)).length
   const allDone = lcComplete && otherDone >= todayItems.length

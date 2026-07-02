@@ -24,6 +24,8 @@ export default function SyncNow() {
         return
       }
       window.setTimeout(() => poll(beforeId), 8000)
+    }).catch(() => {
+      window.setTimeout(() => poll(beforeId), 8000)
     })
   }
 

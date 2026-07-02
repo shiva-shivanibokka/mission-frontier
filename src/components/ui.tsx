@@ -36,12 +36,12 @@ export function ProgressBar({ value, total, color = '#818cf8' }: { value: number
   )
 }
 
-export function Checkbox({ checked, onClick, locked }: { checked: boolean; onClick: () => void; locked?: boolean }) {
+export function Checkbox({ checked, onClick }: { checked: boolean; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
       aria-pressed={checked}
-      title={locked ? 'Auto-checked from your LeetCode' : checked ? 'Done' : 'Mark done'}
+      title={checked ? 'Done' : 'Mark done'}
       className={`grid h-5 w-5 shrink-0 place-items-center rounded-md border text-[13.5px] font-black transition ${
         checked
           ? 'border-accent-teal/70 bg-accent-teal/20 text-accent-teal'

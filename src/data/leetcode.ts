@@ -12,27 +12,6 @@ export interface LCProblem {
   pattern: string
 }
 
-export const PATTERNS: string[] = [
-  'Arrays & Hashing',
-  'Two Pointers',
-  'Sliding Window',
-  'Stack',
-  'Binary Search',
-  'Linked List',
-  'Trees',
-  'Tries',
-  'Heap / Priority Queue',
-  'Backtracking',
-  'Graphs',
-  'Advanced Graphs',
-  '1-D DP',
-  '2-D DP',
-  'Greedy',
-  'Intervals',
-  'Math & Geometry',
-  'Bit Manipulation',
-]
-
 const P = (pattern: string, items: [string, string, Diff][]): LCProblem[] =>
   items.map(([slug, title, difficulty]) => ({ slug, title, difficulty, pattern }))
 
