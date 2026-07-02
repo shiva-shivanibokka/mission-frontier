@@ -52,7 +52,7 @@ export default function SyncNow() {
   const busy = state === 'starting' || state === 'running' || state === 'done'
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="relative">
       <button
         onClick={run}
         disabled={busy}
@@ -65,7 +65,12 @@ export default function SyncNow() {
         {busy && <span className="mr-1.5 inline-block animate-spin">⟳</span>}
         {label}
       </button>
-      {msg && <span className="font-mono text-[13px] text-faint">{msg}</span>}
+      {/* Float the status message below the button so it never widens the row. */}
+      {msg && (
+        <div className="absolute right-0 top-full z-30 mt-2 w-max max-w-[240px] rounded-lg border border-white/10 bg-card/95 px-3 py-1.5 text-right font-mono text-[12.5px] leading-snug text-faint backdrop-blur-md">
+          {msg}
+        </div>
+      )}
     </div>
   )
 }
