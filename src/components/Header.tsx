@@ -10,8 +10,8 @@ export default function Header({ generatedAt }: { generatedAt: string | null }) 
   return (
     <header className="sticky top-0 z-20 border-b border-white/8 bg-canvas/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-4">
-        <div className="grid h-14 w-14 place-items-center rounded-2xl border border-accent-violet/30 bg-accent-violet/10 text-[34px] shadow-glow">
-          🧠
+        <div className="grid h-14 w-14 place-items-center rounded-2xl border border-accent-violet/30 bg-accent-violet/10 text-[32px] shadow-glow">
+          🚀
         </div>
         <div className="min-w-0">
           <h1 className="bg-gradient-to-r from-accent-violet via-accent-coral to-accent-teal bg-clip-text font-display text-[32px] font-extrabold leading-none text-transparent sm:text-[38px]">

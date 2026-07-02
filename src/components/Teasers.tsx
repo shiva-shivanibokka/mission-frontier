@@ -21,7 +21,13 @@ export default function Teasers({ store }: { store: Store }) {
                 {shown[t.id] ? 'hide' : 'hint'}
               </button>
             </div>
-            {shown[t.id] && <div className="ml-8 mt-1 font-mono text-[11.5px] text-accent-teal">{t.hint}</div>}
+            <div className="ml-8 mt-1 flex items-center gap-3">
+              <span className="font-mono text-[10px] font-bold text-faint">wk {t.week}</span>
+              <a href={t.res.url} target="_blank" rel="noreferrer" className="font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                {t.res.label} ↗
+              </a>
+              {shown[t.id] && <span className="font-mono text-[11.5px] text-accent-teal">{t.hint}</span>}
+            </div>
           </li>
         ))}
       </ul>

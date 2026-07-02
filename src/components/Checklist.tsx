@@ -35,11 +35,19 @@ export default function Checklist({
             <div className="pt-0.5">
               <Checkbox checked={store.isChecked(i.id)} onClick={() => store.toggle(i.id)} />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <span className={`text-[13.5px] font-semibold ${store.isChecked(i.id) ? 'text-faint line-through' : 'text-subtle'}`}>{i.label}</span>
               {i.detail && <span className="ml-2 font-mono text-[11px] text-faint">{i.detail}</span>}
+              {i.res && (
+                <a href={i.res.url} target="_blank" rel="noreferrer" className="ml-2 whitespace-nowrap font-mono text-[11px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                  {i.res.label} ↗
+                </a>
+              )}
             </div>
-            {i.phase && <span className="ml-auto shrink-0 pt-0.5"><Pill color={color}>P{i.phase}</Pill></span>}
+            <span className="ml-auto flex shrink-0 items-center gap-1.5 pt-0.5">
+              {i.week && <Pill color="#9B98C8">wk {i.week}</Pill>}
+              {i.phase && <Pill color={color}>P{i.phase}</Pill>}
+            </span>
           </li>
         ))}
       </ul>

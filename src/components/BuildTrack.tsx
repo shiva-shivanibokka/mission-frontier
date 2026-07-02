@@ -27,21 +27,24 @@ export default function BuildTrack({ store }: { store: Store }) {
                 <span className="ml-auto font-mono text-[11.5px] text-muted">{mDone}/{m.steps.length}</span>
               </div>
               <div className="mb-3"><ProgressBar value={mDone} total={m.steps.length} color={c} /></div>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {m.steps.map((s) => (
                   <li key={s.id} className="flex items-start gap-2.5">
                     <div className="pt-0.5"><Checkbox checked={store.isChecked(s.id)} onClick={() => store.toggle(s.id)} /></div>
-                    <span className={`text-[12.5px] font-medium leading-snug ${store.isChecked(s.id) ? 'text-faint line-through' : 'text-subtle'}`}>{s.label}</span>
+                    <div className="min-w-0">
+                      <span className={`text-[12.5px] font-medium leading-snug ${store.isChecked(s.id) ? 'text-faint line-through' : 'text-subtle'}`}>{s.label}</span>
+                      <div className="mt-0.5 flex items-center gap-2">
+                        {s.week && <span className="font-mono text-[10px] font-bold text-faint">wk {s.week}</span>}
+                        {s.res && (
+                          <a href={s.res.url} target="_blank" rel="noreferrer" className="font-mono text-[10.5px] font-bold text-accent-teal/90 hover:text-accent-teal hover:underline">
+                            {s.res.label} ↗
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 flex flex-wrap gap-1.5 border-t border-white/8 pt-3">
-                {m.resources.map((r) => (
-                  <a key={r.url} href={r.url} target="_blank" rel="noreferrer" className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] font-semibold text-subtle transition hover:border-accent-teal/50 hover:text-accent-teal">
-                    {r.label} ↗
-                  </a>
-                ))}
-              </div>
             </div>
           )
         })}

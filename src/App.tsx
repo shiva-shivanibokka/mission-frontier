@@ -3,6 +3,7 @@ import Header from './components/Header'
 import StatTiles, { type Metric } from './components/StatTiles'
 import Roadmap from './components/Roadmap'
 import Today from './components/Today'
+import ThisWeek from './components/ThisWeek'
 import LeetBoard from './components/LeetBoard'
 import Checklist from './components/Checklist'
 import BuildTrack from './components/BuildTrack'
@@ -43,21 +44,24 @@ export default function App() {
         <StatTiles metrics={metrics} />
         <Roadmap />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Today store={store} />
-          <Checklist icon="📐" title="Math" items={MATH} store={store} resources={MATH_RESOURCES} color="#818cf8" />
-        </div>
+        <Today store={store} />
+        <ThisWeek store={store} />
 
         <LeetBoard store={store} />
+
+        <div className="grid items-start gap-5 lg:grid-cols-2">
+          <Checklist icon="📐" title="Math" items={MATH} store={store} resources={MATH_RESOURCES} color="#818cf8" />
+          <Checklist icon="⌨️" title="Production Coding" items={PRODUCTION} store={store} note={PRODUCTION_NOTE} color="#46e0d0" />
+        </div>
+
         <BuildTrack store={store} />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Checklist icon="⌨️" title="Production Coding" items={PRODUCTION} store={store} note={PRODUCTION_NOTE} color="#46e0d0" />
+        <div className="grid items-start gap-5 lg:grid-cols-2">
           <Teasers store={store} />
+          <Rounds store={store} />
         </div>
 
         <TimedTests store={store} />
-        <Rounds store={store} />
 
         <footer className="mt-4 pb-8 text-center font-mono text-[11.5px] text-faint">
           Mission Frontier · 3-month core plan (Jul 6 – Oct 4, 2026) · built for the OpenAI Residency

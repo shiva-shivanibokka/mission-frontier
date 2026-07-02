@@ -30,3 +30,19 @@ export function prettyDate(iso: string): string {
   const d = new Date(iso + 'T00:00:00')
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
+
+// Which plan week (1..PLAN_WEEKS) an ISO date falls in, clamped to the plan.
+export function weekOf(iso: string): number {
+  const days = Math.floor((new Date(iso + 'T00:00:00').getTime() - new Date(PLAN_START + 'T00:00:00').getTime()) / 86_400_000)
+  return Math.min(PLAN_WEEKS, Math.max(1, Math.floor(days / 7) + 1))
+}
+
+export function currentWeek(): number {
+  return weekOf(todayISO())
+}
+
+// The Mon–Sun date range string for a plan week.
+export function weekRange(week: number): string {
+  const start = addDays(PLAN_START, (week - 1) * 7)
+  return `${prettyDate(start)} – ${prettyDate(addDays(start, 6))}`
+}
