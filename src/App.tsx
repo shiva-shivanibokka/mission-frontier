@@ -95,7 +95,7 @@ export default function App() {
         </div>
 
         <footer className="mt-4 pb-8 text-center font-mono text-[13px] text-faint">
-          Mission Frontier · 3-month core plan (Jul 5 – Oct 10, 2026) · built for the OpenAI Residency
+          Mission Frontier · 3-month core plan (Jul 23 – Oct 28, 2026) · built for the OpenAI Residency
         </footer>
       </main>
     </>
