@@ -3,11 +3,11 @@
 A personal, self-updating tracker for a focused **3-month OpenAI Residency prep** sprint — a mission to reach the frontier of AI research. It turns a big, vague goal ("get ready for the Residency") into a dated plan you can actually execute against — and the LeetCode part checks itself off from your real submissions.
 
 > **Recruiter TL;DR**
-> - A single dashboard that tracks six prep tracks at once: LeetCode, math, from-scratch builds, production coding, brain teasers, and timed mock interviews — against a dated 13-week plan.
+> - A single dashboard that tracks eight prep tracks at once — LeetCode, math, from-scratch builds, production coding, a **frontier-research reading list**, **open-source contributions**, brain teasers, and timed mock interviews — against a dated 14-week plan.
 > - The hardest part solved: the LeetCode board **auto-syncs from a public LeetCode profile at build time** (no official API) via an accumulating GraphQL sync committed back by CI, so solving a problem on LeetCode auto-completes it here.
 > - Built with the same stack and deploy pipeline as its sibling trackers (Vite + React + TS + Tailwind → GitHub Pages), fully static, no backend.
 
-Live: `https://shiva-shivanibokka.github.io/mission-frontier/` (once Pages is enabled)
+Live: **https://shiva-shivanibokka.github.io/mission-frontier/**
 
 ---
 
@@ -20,6 +20,8 @@ Live: `https://shiva-shivanibokka.github.io/mission-frontier/` (once Pages is en
 | **Math** | Probability, linear algebra, matrix calculus, information theory — with curated resources |
 | **Build From Scratch** | Autograd + optimizers flagship → GPT reproduction → an original grokking study, each with checkable steps + papers |
 | **Production Coding** | Clean components + ML-from-scratch drills (LRU, BPE, All-Reduce, logistic regression, …) |
+| **Frontier Papers** | 16 canonical papers (Transformer → GPT-3 → scaling/Chinchilla → RoPE/FlashAttention/LoRA/MoE → CoT/emergence → InstructGPT/DPO/Constitutional AI → CLIP/DDPM), phased across the plan, each with the arXiv link + a strong explainer |
+| **Open Source** | A contribution ladder from *read the CONTRIBUTING.md* to *land a merged PR*, plus a curated list of live target repos (vLLM, HF Transformers/TRL/PEFT, EleutherAI lm-eval-harness, Triton, llm.c, nanochat) linking straight to their good-first-issue queues |
 | **Brain Teasers** | 12 classics for the mentor round, with reveal-on-click hints |
 | **Timed Tests** | 12 dated mock tests with time limits so you rehearse under the real interview clock |
 | **Interview Rounds** | The actual Residency loop (OA → live coding → 4-hr research → mentor → hiring manager) with prep notes |
@@ -46,9 +48,10 @@ Vite 5 · React 18 · TypeScript 5 (strict) · Tailwind CSS 3 · Canvas for the 
 
 ## Skills demonstrated
 
-- Turning an ambiguous goal into a **dated, data-driven plan** rendered from typed data files.
+- Turning an ambiguous goal into a **dated, data-driven plan** rendered from typed data files, where every track shares one generic checklist/pacing engine so a new section is just a new typed array.
 - Working around a **no-API data source** with a CI-side accumulator that commits results back to the repo.
-- Client state that layers **localStorage over a committed baseline**, with optional GitHub-Contents-API persistence via a user-supplied fine-grained token (stored only in the browser).
+- Client state that layers **localStorage over a committed baseline** (with tombstones for clears), plus optional GitHub-Contents-API persistence via a user-supplied fine-grained token (stored only in the browser).
+- Curating a defensible **research-reading path and open-source contribution strategy** for a competitive AI role — the domain judgment, not just the UI.
 - Accessible, reduced-motion-aware canvas animation.
 
 ## Getting started
@@ -66,8 +69,9 @@ Set the LeetCode handle via `--user` or the `LEETCODE_USERNAME` env var (default
 
 ```
 src/
-  data/        plan constants, NeetCode-150 list, schedule builder, all track data
-  lib/         progress store (localStorage + baseline) and GitHub commit helper
+  data/        plan constants, NeetCode 250 list, schedule builder, all track data
+               (tracks.ts holds math, builds, production, papers, open source, teasers, tests)
+  lib/         progress store (localStorage + baseline) + weekly pacing + GitHub commit helper
   components/  circuit background, header, tiles, roadmap, and each track section
 scripts/       sync-leetcode.mjs (accumulating GraphQL sync)
 public/        problems.json (LeetCode, CI-updated) · progress.json (manual check-offs)
