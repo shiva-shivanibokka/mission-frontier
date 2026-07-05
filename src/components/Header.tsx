@@ -49,6 +49,8 @@ export default function Header({ store }: { store: Store }) {
               ['catchup', 'Catch-up'],
               ['study', 'Math + Drills'],
               ['build', 'Build'],
+              ['papers', 'Papers'],
+              ['opensource', 'Open Source'],
               ['prep', 'Interview Prep'],
               ['tests', 'Timed Tests'],
             ].map(([id, label]) => (

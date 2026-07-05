@@ -218,6 +218,131 @@ export const PRODUCTION: CheckItem[] = [
 export const PRODUCTION_NOTE =
   'OpenAI’s coding rounds are production-style: write lots of clean code, handle edge cases, structure it well, and think out loud. Build each of these as a small, tested component.'
 
+// ---- Frontier research papers -----------------------------------------------
+// The canon a residency candidate is expected to speak to fluently, phased so
+// each paper lands the week its ideas show up elsewhere in the plan (e.g. RoPe
+// during the GPT build; RLHF/DPO during the alignment weeks). Each has the
+// arXiv link plus a strong explainer so you can pick whichever clicks.
+export const PAPERS: CheckItem[] = [
+  { id: 'paper-transformer', label: 'Attention Is All You Need — the Transformer', detail: '2017', phase: 1, week: 1, res: [
+    { label: 'arXiv 1706.03762', url: 'https://arxiv.org/abs/1706.03762' },
+    { label: 'Illustrated Transformer', url: 'https://jalammar.github.io/illustrated-transformer/' },
+  ] },
+  { id: 'paper-gpt3', label: 'GPT-3: Language Models are Few-Shot Learners', detail: 'the scale bet', phase: 1, week: 2, res: [
+    { label: 'arXiv 2005.14165', url: 'https://arxiv.org/abs/2005.14165' },
+    { label: 'Illustrated GPT-2', url: 'https://jalammar.github.io/illustrated-gpt2/' },
+  ] },
+  { id: 'paper-scaling', label: 'Scaling Laws for Neural Language Models (Kaplan)', phase: 1, week: 3, res: [
+    { label: 'arXiv 2001.08361', url: 'https://arxiv.org/abs/2001.08361' },
+    { label: 'Papers with Code', url: 'https://paperswithcode.com/paper/scaling-laws-for-neural-language-models' },
+  ] },
+  { id: 'paper-chinchilla', label: 'Training Compute-Optimal LLMs — Chinchilla', detail: 'tokens > params', phase: 1, week: 4, res: [
+    { label: 'arXiv 2203.15556', url: 'https://arxiv.org/abs/2203.15556' },
+    { label: "Chinchilla's implications", url: 'https://www.lesswrong.com/posts/6Fpvch8RR29qLEWNH/chinchilla-s-wild-implications' },
+  ] },
+  { id: 'paper-rope', label: 'RoFormer — Rotary Position Embeddings (RoPE)', phase: 2, week: 5, res: [
+    { label: 'arXiv 2104.09864', url: 'https://arxiv.org/abs/2104.09864' },
+    { label: 'EleutherAI blog', url: 'https://blog.eleuther.ai/rotary-embeddings/' },
+  ] },
+  { id: 'paper-flash', label: 'FlashAttention — IO-aware exact attention', phase: 2, week: 6, res: [
+    { label: 'arXiv 2205.14135', url: 'https://arxiv.org/abs/2205.14135' },
+    { label: 'flash-attention repo', url: 'https://github.com/Dao-AILab/flash-attention' },
+  ] },
+  { id: 'paper-lora', label: 'LoRA — Low-Rank Adaptation of LLMs', phase: 2, week: 6, res: [
+    { label: 'arXiv 2106.09685', url: 'https://arxiv.org/abs/2106.09685' },
+    { label: 'PEFT — LoRA guide', url: 'https://huggingface.co/docs/peft/conceptual_guides/lora' },
+  ] },
+  { id: 'paper-moe', label: 'Switch Transformers — Mixture of Experts', phase: 2, week: 7, res: [
+    { label: 'arXiv 2101.03961', url: 'https://arxiv.org/abs/2101.03961' },
+    { label: 'HF — MoE explained', url: 'https://huggingface.co/blog/moe' },
+  ] },
+  { id: 'paper-cot', label: 'Chain-of-Thought Prompting', phase: 2, week: 8, res: [
+    { label: 'arXiv 2201.11903', url: 'https://arxiv.org/abs/2201.11903' },
+    { label: 'Prompting Guide — CoT', url: 'https://www.promptingguide.ai/techniques/cot' },
+  ] },
+  { id: 'paper-emergent', label: 'Emergent Abilities of Large Language Models', phase: 2, week: 9, res: [
+    { label: 'arXiv 2206.07682', url: 'https://arxiv.org/abs/2206.07682' },
+    { label: 'Jason Wei — emergence', url: 'https://www.jasonwei.net/blog/emergence' },
+  ] },
+  { id: 'paper-instructgpt', label: 'InstructGPT — training LMs to follow instructions (RLHF)', detail: 'the alignment paper', phase: 3, week: 10, res: [
+    { label: 'arXiv 2203.02155', url: 'https://arxiv.org/abs/2203.02155' },
+    { label: 'HF — Illustrated RLHF', url: 'https://huggingface.co/blog/rlhf' },
+  ] },
+  { id: 'paper-prefs', label: 'Deep RL from Human Preferences', phase: 3, week: 10, res: [
+    { label: 'arXiv 1706.03741', url: 'https://arxiv.org/abs/1706.03741' },
+    { label: 'OpenAI blog', url: 'https://openai.com/index/learning-from-human-preferences/' },
+  ] },
+  { id: 'paper-dpo', label: 'DPO — Direct Preference Optimization', detail: 'RLHF without RL', phase: 3, week: 11, res: [
+    { label: 'arXiv 2305.18290', url: 'https://arxiv.org/abs/2305.18290' },
+    { label: 'TRL — DPO trainer', url: 'https://huggingface.co/docs/trl/dpo_trainer' },
+  ] },
+  { id: 'paper-cai', label: 'Constitutional AI — harmlessness from AI feedback', phase: 3, week: 12, res: [
+    { label: 'arXiv 2212.08073', url: 'https://arxiv.org/abs/2212.08073' },
+    { label: 'Anthropic research', url: 'https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback' },
+  ] },
+  { id: 'paper-clip', label: 'CLIP — learning transferable visual models from text', detail: 'multimodal', phase: 3, week: 13, res: [
+    { label: 'arXiv 2103.00020', url: 'https://arxiv.org/abs/2103.00020' },
+    { label: 'OpenAI blog', url: 'https://openai.com/index/clip/' },
+  ] },
+  { id: 'paper-ddpm', label: 'DDPM — Denoising Diffusion Probabilistic Models', detail: 'generative', phase: 3, week: 14, res: [
+    { label: 'arXiv 2006.11239', url: 'https://arxiv.org/abs/2006.11239' },
+    { label: 'Lil’Log — diffusion', url: 'https://lilianweng.github.io/posts/2021-07-11-diffusion-models/' },
+  ] },
+]
+export const PAPERS_NOTE =
+  'Read for fluency, not memorization: for each, be able to say what problem it solved, the key idea, and why it mattered. In the research/mentor rounds you’ll be expected to place these on the map and connect them to your own projects.'
+export const PAPERS_RESOURCES: Resource[] = [
+  { label: 'Papers with Code', url: 'https://paperswithcode.com/' },
+  { label: 'Hugging Face — Daily Papers (AK)', url: 'https://huggingface.co/papers' },
+  { label: 'Sebastian Raschka — Ahead of AI', url: 'https://magazine.sebastianraschka.com/' },
+  { label: 'Lil’Log', url: 'https://lilianweng.github.io/' },
+  { label: 'The Annotated Transformer', url: 'http://nlp.seas.harvard.edu/annotated-transformer/' },
+]
+
+// ---- Open-source contributions ----------------------------------------------
+// A ladder from "read the CONTRIBUTING.md" to "land a substantive merged PR" —
+// the last rung is the actual interview talking point. The concrete repos to
+// pick from live in OPENSOURCE_TARGETS below (rendered as the section footer),
+// each pointing straight at its beginner-friendly issue queue.
+export const OPENSOURCE: CheckItem[] = [
+  { id: 'os-pick', label: 'Pick 2 target repos; star + watch them and read their CONTRIBUTING.md', detail: 'from the list below', phase: 1, week: 4, res: [
+    { label: 'first-contributions', url: 'https://github.com/firstcontributions/first-contributions' },
+    { label: 'How to contribute (GitHub)', url: 'https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project' },
+  ] },
+  { id: 'os-build', label: 'Fork one target, build it from source & get its test suite green locally', phase: 2, week: 6, res: [
+    { label: 'Transformers — contributing', url: 'https://huggingface.co/docs/transformers/contributing' },
+    { label: 'vLLM — contributing', url: 'https://docs.vllm.ai/en/latest/contributing/index.html' },
+  ] },
+  { id: 'os-claim', label: 'Claim a “good first issue” — reproduce it and comment your plan of attack', phase: 2, week: 8, res: [
+    { label: 'Transformers — good first issues', url: 'https://github.com/huggingface/transformers/contribute' },
+    { label: 'vLLM — good first issues', url: 'https://github.com/vllm-project/vllm/labels/good%20first%20issue' },
+  ] },
+  { id: 'os-docs', label: 'Land a first small PR (docs / typo / test) to learn the review flow', detail: 'get the process reps in', phase: 2, week: 9, res: [
+    { label: 'Making a PR (GitHub)', url: 'https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request' },
+  ] },
+  { id: 'os-bugfix', label: 'Bug-fix PR with a regression test that a maintainer reviews & merges', phase: 3, week: 11 },
+  { id: 'os-feature', label: 'Substantive PR: a new eval task, a kernel, or a real feature', detail: 'the one you’ll talk about', phase: 3, week: 12, res: [
+    { label: 'lm-eval — add a task', url: 'https://github.com/EleutherAI/lm-evaluation-harness/blob/main/docs/new_task_guide.md' },
+  ] },
+  { id: 'os-merged', label: 'Get a substantive PR merged; write it up as an interview story', phase: 3, week: 14 },
+]
+export const OPENSOURCE_NOTE =
+  'A merged PR to a repo the interviewers respect is one of the strongest signals you can bring: it proves you can read a large unfamiliar codebase, work to their standards, and ship. Aim the whole ladder at ONE substantive merge — quality over count.'
+// The concrete places to contribute, best interview signal first. Each link goes
+// straight to that repo’s beginner-friendly issue queue / contribution entry.
+export const OPENSOURCE_TARGETS: Resource[] = [
+  { label: 'vLLM — LLM inference engine', url: 'https://github.com/vllm-project/vllm/labels/good%20first%20issue' },
+  { label: 'HF Transformers — the models', url: 'https://github.com/huggingface/transformers/contribute' },
+  { label: 'HF TRL — RLHF / DPO / GRPO', url: 'https://github.com/huggingface/trl/labels/good%20first%20issue' },
+  { label: 'HF PEFT — LoRA / QLoRA', url: 'https://github.com/huggingface/peft/labels/Good%20First%20Issue' },
+  { label: 'lm-evaluation-harness — evals', url: 'https://github.com/EleutherAI/lm-evaluation-harness/labels/good%20first%20issue' },
+  { label: 'Triton — GPU kernels (born at OpenAI)', url: 'https://github.com/triton-lang/triton/labels/good%20first%20issue' },
+  { label: 'HF Accelerate — distributed training', url: 'https://github.com/huggingface/accelerate/labels/Good%20First%20Issue' },
+  { label: 'HF Datasets — data tooling', url: 'https://github.com/huggingface/datasets/labels/good%20first%20issue' },
+  { label: 'karpathy/llm.c — GPT in raw C/CUDA', url: 'https://github.com/karpathy/llm.c/issues' },
+  { label: 'karpathy/nanochat — full-stack ChatGPT', url: 'https://github.com/karpathy/nanochat/issues' },
+]
+
 // ---- Brain teasers -----------------------------------------------------------
 export interface Teaser {
   id: string
@@ -288,6 +413,8 @@ export interface WeekBucket {
   math: CheckItem[]
   build: (CheckItem & { milestone: string })[]
   production: CheckItem[]
+  papers: CheckItem[]
+  opensource: CheckItem[]
   teasers: Teaser[]
   tests: TimedTest[]
 }
@@ -296,6 +423,8 @@ export function itemsForWeek(week: number): WeekBucket {
     math: MATH.filter((m) => m.week === week),
     build: BUILD.flatMap((mst) => mst.steps.filter((s) => s.week === week).map((s) => ({ ...s, milestone: mst.title }))),
     production: PRODUCTION.filter((p) => p.week === week),
+    papers: PAPERS.filter((p) => p.week === week),
+    opensource: OPENSOURCE.filter((o) => o.week === week),
     teasers: TEASERS.filter((t) => t.week === week),
     tests: TESTS.filter((t) => weekOf(t.date) === week),
   }

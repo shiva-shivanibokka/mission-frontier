@@ -40,6 +40,8 @@ export function nonLcItemsForWeek(week: number): NonLcItem[] {
     ...b.math.map((m) => ({ id: m.id, label: m.label, tag: 'Math', res: m.res })),
     ...b.build.map((s) => ({ id: s.id, label: s.label, tag: 'Build', res: s.res })),
     ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res })),
+    ...b.papers.map((p) => ({ id: p.id, label: p.label, tag: 'Paper', res: p.res })),
+    ...b.opensource.map((o) => ({ id: o.id, label: o.label, tag: 'OSS', res: o.res })),
     ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res] })),
     ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test' })),
   ]

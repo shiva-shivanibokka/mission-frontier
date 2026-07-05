@@ -13,7 +13,20 @@ import TimedTests from './components/TimedTests'
 import Rounds from './components/Rounds'
 import { useStore } from './lib/store'
 import { NEETCODE } from './data/leetcode'
-import { BUILD, MATH, MATH_RESOURCES, PRODUCTION, PRODUCTION_NOTE, TESTS } from './data/tracks'
+import {
+  BUILD,
+  MATH,
+  MATH_RESOURCES,
+  OPENSOURCE,
+  OPENSOURCE_NOTE,
+  OPENSOURCE_TARGETS,
+  PAPERS,
+  PAPERS_NOTE,
+  PAPERS_RESOURCES,
+  PRODUCTION,
+  PRODUCTION_NOTE,
+  TESTS,
+} from './data/tracks'
 
 export default function App() {
   const store = useStore()
@@ -24,11 +37,15 @@ export default function App() {
   const testsDone = TESTS.filter((t) => store.isChecked(t.id)).length
   const study = [...MATH, ...PRODUCTION]
   const studyDone = study.filter((i) => store.isChecked(i.id)).length
+  const papersDone = PAPERS.filter((p) => store.isChecked(p.id)).length
+  const osDone = OPENSOURCE.filter((o) => store.isChecked(o.id)).length
 
   const metrics: Metric[] = [
     { label: 'LeetCode', value: lcDone, total: NEETCODE.length, sub: 'NeetCode 250 · auto-synced', color: '#a78bfa' },
     { label: 'Build track', value: buildDone, total: buildSteps.length, sub: 'from-scratch steps', color: '#46e0d0' },
     { label: 'Math + drills', value: studyDone, total: study.length, sub: 'math & production topics', color: '#818cf8' },
+    { label: 'Papers', value: papersDone, total: PAPERS.length, sub: 'frontier research canon', color: '#c084fc' },
+    { label: 'Open source', value: osDone, total: OPENSOURCE.length, sub: 'toward a merged PR', color: '#34d399' },
     { label: 'Timed tests', value: testsDone, total: TESTS.length, sub: 'passed in time', color: '#fbbf24' },
   ]
 
@@ -57,6 +74,15 @@ export default function App() {
 
         <div id="build" className="scroll-mt-28">
           <BuildTrack store={store} />
+        </div>
+
+        <div className="grid items-start gap-5 lg:grid-cols-2">
+          <div id="papers" className="scroll-mt-28">
+            <Checklist icon="📄" title="Frontier Papers" items={PAPERS} store={store} note={PAPERS_NOTE} resources={PAPERS_RESOURCES} color="#c084fc" />
+          </div>
+          <div id="opensource" className="scroll-mt-28">
+            <Checklist icon="🛠️" title="Open Source" items={OPENSOURCE} store={store} note={OPENSOURCE_NOTE} resources={OPENSOURCE_TARGETS} color="#34d399" />
+          </div>
         </div>
 
         <div id="prep" className="grid items-start gap-5 scroll-mt-28 lg:grid-cols-2">
