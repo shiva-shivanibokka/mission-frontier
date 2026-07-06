@@ -50,6 +50,7 @@ export default function Header({ store }: { store: Store }) {
               ['study', 'Math + Drills'],
               ['build', 'Build'],
               ['papers', 'Papers'],
+              ['sysdesign', 'System Design'],
               ['opensource', 'Open Source'],
               ['prep', 'Interview Prep'],
               ['tests', 'Timed Tests'],

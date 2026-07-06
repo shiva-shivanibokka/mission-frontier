@@ -3,7 +3,7 @@
 A personal, self-updating tracker for a focused **3-month OpenAI Residency prep** sprint — a mission to reach the frontier of AI research. It turns a big, vague goal ("get ready for the Residency") into a dated plan you can actually execute against — and the LeetCode part checks itself off from your real submissions.
 
 > **Recruiter TL;DR**
-> - A single dashboard that tracks eight prep tracks at once — LeetCode, math, from-scratch builds, production coding, a **frontier-research reading list**, **open-source contributions**, brain teasers, and timed mock interviews — against a dated 14-week plan.
+> - A single dashboard that tracks nine prep tracks at once — LeetCode, math, from-scratch builds, production coding, a **frontier-research reading list**, a **system-design / ML-systems book track**, **open-source contributions**, brain teasers, and timed mock interviews — against a dated 14-week plan.
 > - The hardest part solved: the LeetCode board **auto-syncs from a public LeetCode profile at build time** (no official API) via an accumulating GraphQL sync committed back by CI, so solving a problem on LeetCode auto-completes it here.
 > - Built with the same stack and deploy pipeline as its sibling trackers (Vite + React + TS + Tailwind → GitHub Pages), fully static, no backend.
 
@@ -21,6 +21,7 @@ Live: **https://shiva-shivanibokka.github.io/mission-frontier/**
 | **Build From Scratch** | Autograd + optimizers flagship → GPT reproduction → an original grokking study, each with checkable steps + papers |
 | **Production Coding** | Clean components + ML-from-scratch drills (LRU, BPE, All-Reduce, logistic regression, …) |
 | **Frontier Papers** | 16 canonical papers (Transformer → GPT-3 → scaling/Chinchilla → RoPE/FlashAttention/LoRA/MoE → CoT/emergence → InstructGPT/DPO/Constitutional AI → CLIP/DDPM), phased across the plan, each with the arXiv link + a strong explainer |
+| **System Design** | Key chapters from three books, priority-weighted for a research-focused loop: **AI Engineering** (Huyen, High), **Designing ML Systems** (Huyen, Med), **System Design Interview** (Alex Xu, Low). Each chapter is a checkable item with the book + a free companion, and higher-priority books are scheduled more densely and earlier |
 | **Open Source** | A contribution ladder from *read the CONTRIBUTING.md* to *land a merged PR*, plus a curated list of live target repos (vLLM, HF Transformers/TRL/PEFT, EleutherAI lm-eval-harness, Triton, llm.c, nanochat) linking straight to their good-first-issue queues |
 | **Brain Teasers** | 12 classics for the mentor round, with reveal-on-click hints |
 | **Timed Tests** | 12 dated mock tests with time limits so you rehearse under the real interview clock |

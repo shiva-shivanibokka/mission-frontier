@@ -11,7 +11,7 @@ export interface Metric {
 
 export default function StatTiles({ metrics }: { metrics: Metric[] }) {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {metrics.map((m) => (
         <Card key={m.label} className="p-4">
           <div className="font-mono text-[13px] uppercase tracking-wide text-muted">{m.label}</div>

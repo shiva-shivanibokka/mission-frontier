@@ -25,6 +25,9 @@ import {
   PAPERS_RESOURCES,
   PRODUCTION,
   PRODUCTION_NOTE,
+  SYSDESIGN,
+  SYSDESIGN_NOTE,
+  SYSDESIGN_RESOURCES,
   TESTS,
 } from './data/tracks'
 
@@ -39,12 +42,14 @@ export default function App() {
   const studyDone = study.filter((i) => store.isChecked(i.id)).length
   const papersDone = PAPERS.filter((p) => store.isChecked(p.id)).length
   const osDone = OPENSOURCE.filter((o) => store.isChecked(o.id)).length
+  const sdDone = SYSDESIGN.filter((s) => store.isChecked(s.id)).length
 
   const metrics: Metric[] = [
     { label: 'LeetCode', value: lcDone, total: NEETCODE.length, sub: 'NeetCode 250 · auto-synced', color: '#a78bfa' },
     { label: 'Build track', value: buildDone, total: buildSteps.length, sub: 'from-scratch steps', color: '#46e0d0' },
     { label: 'Math + drills', value: studyDone, total: study.length, sub: 'math & production topics', color: '#818cf8' },
     { label: 'Papers', value: papersDone, total: PAPERS.length, sub: 'frontier research canon', color: '#c084fc' },
+    { label: 'System design', value: sdDone, total: SYSDESIGN.length, sub: 'Huyen ×2 · Alex Xu', color: '#f0abfc' },
     { label: 'Open source', value: osDone, total: OPENSOURCE.length, sub: 'toward a merged PR', color: '#34d399' },
     { label: 'Timed tests', value: testsDone, total: TESTS.length, sub: 'passed in time', color: '#fbbf24' },
   ]
@@ -83,6 +88,10 @@ export default function App() {
           <div id="opensource" className="scroll-mt-28">
             <Checklist icon="🛠️" title="Open Source" items={OPENSOURCE} store={store} note={OPENSOURCE_NOTE} resources={OPENSOURCE_TARGETS} color="#34d399" />
           </div>
+        </div>
+
+        <div id="sysdesign" className="scroll-mt-28">
+          <Checklist icon="🏗️" title="System Design" items={SYSDESIGN} store={store} note={SYSDESIGN_NOTE} resources={SYSDESIGN_RESOURCES} color="#f0abfc" />
         </div>
 
         <div id="prep" className="grid items-start gap-5 scroll-mt-28 lg:grid-cols-2">

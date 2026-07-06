@@ -51,6 +51,7 @@ export default function Checklist({
               <NoteField store={store} id={i.id} />
             </div>
             <span className="ml-auto flex shrink-0 items-center gap-1.5 pt-0.5">
+              {i.pri && <Pill color={i.pri === 'High' ? '#fb7185' : i.pri === 'Med' ? '#fbbf24' : '#94a3b8'}>{i.pri}</Pill>}
               {i.week && <Pill color="#9B98C8">wk {i.week}</Pill>}
               {i.phase && <Pill color={color}>P{i.phase}</Pill>}
             </span>

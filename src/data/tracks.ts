@@ -20,6 +20,9 @@ export interface CheckItem {
   detail?: string
   phase?: 1 | 2 | 3
   week?: number
+  // Optional priority badge (used by the System Design track to rank the three
+  // books: AI Engineering = High, Designing ML Systems = Med, Alex Xu = Low).
+  pri?: 'High' | 'Med' | 'Low'
   // Several study resources per item, so if one doesn't click for you there are
   // alternatives — no time wasted hunting for a good one.
   res?: Resource[]
@@ -299,6 +302,97 @@ export const PAPERS_RESOURCES: Resource[] = [
   { label: 'The Annotated Transformer', url: 'http://nlp.seas.harvard.edu/annotated-transformer/' },
 ]
 
+// ---- System Design (books) --------------------------------------------------
+// Three books, weighted by how much they move THIS interview (the Residency loop
+// is research-focused, so AI-engineering fluency matters most):
+//   • AI Engineering (Chip Huyen)          → High  — scheduled densely & early
+//   • Designing ML Systems (Chip Huyen)    → Med   — key chapters, mid-plan
+//   • System Design Interview (Alex Xu)    → Low   — a light classic-SD subset, late
+// The priority shows as a badge and drives the weekly pacing: High-priority
+// chapters are spread across the most weeks and front-loaded.
+export const SYSDESIGN: CheckItem[] = [
+  // ---- AI Engineering — HIGH ----
+  { id: 'sd-aie-fnd', label: 'Foundation models: pre-training, post-training (SFT + RLHF), sampling', detail: 'AI Engineering · ch 1–2', pri: 'High', phase: 1, week: 1, res: [
+    { label: 'AI Engineering (O’Reilly)', url: 'https://www.oreilly.com/library/view/ai-engineering/9781098166298/' },
+    { label: 'aie-book (free resources)', url: 'https://github.com/chiphuyen/aie-book' },
+  ] },
+  { id: 'sd-aie-eval1', label: 'Evaluation methodology: perplexity, exact-match vs. AI-as-a-judge', detail: 'AI Engineering · ch 3', pri: 'High', phase: 1, week: 2, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+    { label: 'Chip — LLM apps in prod', url: 'https://huyenchip.com/2023/04/11/llm-engineering.html' },
+  ] },
+  { id: 'sd-aie-eval2', label: 'Evaluate AI systems: building eval pipelines & picking benchmarks', detail: 'AI Engineering · ch 4', pri: 'High', phase: 1, week: 3, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+    { label: 'lm-eval-harness', url: 'https://github.com/EleutherAI/lm-evaluation-harness' },
+  ] },
+  { id: 'sd-aie-prompt', label: 'Prompt engineering, structured outputs & defensive prompting', detail: 'AI Engineering · ch 5', pri: 'High', phase: 1, week: 4, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+  ] },
+  { id: 'sd-aie-rag', label: 'RAG and agents: retrieval, tool use, planning', detail: 'AI Engineering · ch 6', pri: 'High', phase: 2, week: 5, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+    { label: 'Chip — RAG & agents', url: 'https://huyenchip.com/2025/01/16/ai-engineering.html' },
+  ] },
+  { id: 'sd-aie-ft', label: 'Finetuning: when to finetune, PEFT/LoRA, the memory math', detail: 'AI Engineering · ch 7', pri: 'High', phase: 2, week: 6, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+    { label: 'PEFT — LoRA', url: 'https://huggingface.co/docs/peft/conceptual_guides/lora' },
+  ] },
+  { id: 'sd-aie-data', label: 'Dataset engineering: curation, synthesis, data quality', detail: 'AI Engineering · ch 8', pri: 'High', phase: 2, week: 7, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+  ] },
+  { id: 'sd-aie-infer', label: 'Inference optimization: latency vs. throughput, quantization, KV cache', detail: 'AI Engineering · ch 9', pri: 'High', phase: 2, week: 8, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+    { label: 'Lil’Log — inference', url: 'https://lilianweng.github.io/posts/2023-01-10-inference-optimization/' },
+  ] },
+  { id: 'sd-aie-arch', label: 'AI app architecture, guardrails & user-feedback loops', detail: 'AI Engineering · ch 10', pri: 'High', phase: 3, week: 10, res: [
+    { label: 'aie-book', url: 'https://github.com/chiphuyen/aie-book' },
+  ] },
+  // ---- Designing ML Systems — MED ----
+  { id: 'sd-dmls-frame', label: 'ML-systems design framing: business → ML objectives, requirements', detail: 'Designing ML Systems · ch 2', pri: 'Med', phase: 1, week: 3, res: [
+    { label: 'Designing ML Systems (O’Reilly)', url: 'https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/' },
+    { label: 'dmls-book summaries', url: 'https://github.com/chiphuyen/dmls-book' },
+  ] },
+  { id: 'sd-dmls-data', label: 'Training data: sampling, labeling, class imbalance', detail: 'Designing ML Systems · ch 4', pri: 'Med', phase: 2, week: 5, res: [
+    { label: 'dmls-book', url: 'https://github.com/chiphuyen/dmls-book' },
+  ] },
+  { id: 'sd-dmls-feat', label: 'Feature engineering & avoiding data leakage', detail: 'Designing ML Systems · ch 5', pri: 'Med', phase: 2, week: 6, res: [
+    { label: 'dmls-book', url: 'https://github.com/chiphuyen/dmls-book' },
+  ] },
+  { id: 'sd-dmls-dev', label: 'Model development & offline evaluation (baselines, ensembling)', detail: 'Designing ML Systems · ch 6', pri: 'Med', phase: 2, week: 8, res: [
+    { label: 'dmls-book', url: 'https://github.com/chiphuyen/dmls-book' },
+  ] },
+  { id: 'sd-dmls-deploy', label: 'Model deployment & prediction service: batch vs. online', detail: 'Designing ML Systems · ch 7', pri: 'Med', phase: 2, week: 9, res: [
+    { label: 'dmls-book', url: 'https://github.com/chiphuyen/dmls-book' },
+  ] },
+  { id: 'sd-dmls-shift', label: 'Data distribution shifts & monitoring in production', detail: 'Designing ML Systems · ch 8', pri: 'Med', phase: 3, week: 11, res: [
+    { label: 'dmls-book', url: 'https://github.com/chiphuyen/dmls-book' },
+    { label: 'ML-sys-design booklet', url: 'https://github.com/chiphuyen/machine-learning-systems-design' },
+  ] },
+  // ---- System Design Interview (Alex Xu) — LOW ----
+  { id: 'sd-sdi-frame', label: 'The 4-step design framework + back-of-envelope estimation', detail: 'System Design Interview · ch 3–4', pri: 'Low', phase: 3, week: 12, res: [
+    { label: 'ByteByteGo', url: 'https://bytebytego.com/' },
+    { label: 'system-design-primer', url: 'https://github.com/donnemartin/system-design-primer' },
+  ] },
+  { id: 'sd-sdi-scale', label: 'Scaling basics: caching, load balancing, sharding, CDNs', detail: 'System Design Interview · ch 1', pri: 'Low', phase: 3, week: 13, res: [
+    { label: 'system-design-primer', url: 'https://github.com/donnemartin/system-design-primer' },
+  ] },
+  { id: 'sd-sdi-kv', label: 'Design a key-value store: consistent hashing, replication, quorum', detail: 'System Design Interview · ch 6', pri: 'Low', phase: 3, week: 13, res: [
+    { label: 'system-design-primer', url: 'https://github.com/donnemartin/system-design-primer' },
+  ] },
+  { id: 'sd-sdi-ml', label: 'Design an ML-driven system (recommendation / ad-click aggregation)', detail: 'System Design Interview Vol 2', pri: 'Low', phase: 3, week: 14, res: [
+    { label: 'ML-sys-design booklet', url: 'https://github.com/chiphuyen/machine-learning-systems-design' },
+  ] },
+]
+export const SYSDESIGN_NOTE =
+  'Weighted for the Residency loop (research-focused, no classic distributed-systems round): AI Engineering is scheduled densely and early (High), Designing ML Systems fills the middle (Med), and a light classic-system-design subset from Alex Xu comes late (Low). If a week is tight, do the High items first.'
+export const SYSDESIGN_RESOURCES: Resource[] = [
+  { label: 'AI Engineering — Huyen (O’Reilly)', url: 'https://www.oreilly.com/library/view/ai-engineering/9781098166298/' },
+  { label: 'aie-book — free companion', url: 'https://github.com/chiphuyen/aie-book' },
+  { label: 'Designing ML Systems — Huyen (O’Reilly)', url: 'https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/' },
+  { label: 'dmls-book — free summaries', url: 'https://github.com/chiphuyen/dmls-book' },
+  { label: 'ML systems design — 27 interview Qs (free)', url: 'https://github.com/chiphuyen/machine-learning-systems-design' },
+  { label: 'System Design Interview — Alex Xu / ByteByteGo', url: 'https://bytebytego.com/' },
+  { label: 'system-design-primer (free)', url: 'https://github.com/donnemartin/system-design-primer' },
+]
+
 // ---- Open-source contributions ----------------------------------------------
 // A ladder from "read the CONTRIBUTING.md" to "land a substantive merged PR" —
 // the last rung is the actual interview talking point. The concrete repos to
@@ -415,6 +509,7 @@ export interface WeekBucket {
   production: CheckItem[]
   papers: CheckItem[]
   opensource: CheckItem[]
+  sysdesign: CheckItem[]
   teasers: Teaser[]
   tests: TimedTest[]
 }
@@ -425,6 +520,7 @@ export function itemsForWeek(week: number): WeekBucket {
     production: PRODUCTION.filter((p) => p.week === week),
     papers: PAPERS.filter((p) => p.week === week),
     opensource: OPENSOURCE.filter((o) => o.week === week),
+    sysdesign: SYSDESIGN.filter((s) => s.week === week),
     teasers: TEASERS.filter((t) => t.week === week),
     tests: TESTS.filter((t) => weekOf(t.date) === week),
   }

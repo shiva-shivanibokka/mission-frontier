@@ -42,6 +42,9 @@ export function nonLcItemsForWeek(week: number): NonLcItem[] {
     ...b.production.map((p) => ({ id: p.id, label: p.label, tag: 'Prod', res: p.res })),
     ...b.papers.map((p) => ({ id: p.id, label: p.label, tag: 'Paper', res: p.res })),
     ...b.opensource.map((o) => ({ id: o.id, label: o.label, tag: 'OSS', res: o.res })),
+    // Tag by book so the weekly plan shows the priority order at a glance
+    // (AI-Eng = High → ML-Sys = Med → Sys-Design = Low).
+    ...b.sysdesign.map((s) => ({ id: s.id, label: s.label, tag: s.pri === 'High' ? 'AI-Eng' : s.pri === 'Med' ? 'ML-Sys' : 'Sys-Design', res: s.res })),
     ...b.teasers.map((t) => ({ id: t.id, label: t.q, tag: 'Teaser', res: [t.res] })),
     ...b.tests.map((t) => ({ id: t.id, label: `T${t.n} · ${t.title} (${t.minutes} min)`, tag: 'Test' })),
   ]
